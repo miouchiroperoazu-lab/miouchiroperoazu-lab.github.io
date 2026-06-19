@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>私の作品 - ポートフォリオ</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Arial', sans-serif; background: #f9f7f1; color: #222; }
+    header { background: #fff; padding: 24px 20px; box-shadow: 0 3px 12px rgba(0,0,0,0.08); }
+    header h1 { font-size: 32px; margin-bottom: 6px; }
+    header p { color: #666; }
+    nav { background: #333; text-align: center; padding: 12px 0; }
+    nav a { color: #fff; text-decoration: none; margin: 0 16px; font-size: 15px; }
+    nav a:hover { color: #f4d6ad; }
+    .container { max-width: 1080px; margin: 36px auto; padding: 0 20px; }
+    section { margin-bottom: 50px; }
+    section h2 { font-size: 28px; margin-bottom: 18px; border-bottom: 2px solid #333; padding-bottom: 10px; }
+    .gallery { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .gallery-item { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
+    .gallery-item img { width: 100%; display: block; height: 220px; object-fit: cover; }
+    .gallery-item p { padding: 16px; text-align: center; font-size: 15px; }
+    .box { background: #fff; padding: 28px; border-radius: 10px; box-shadow: 0 6px 18px rgba(0,0,0,0.05); line-height: 1.7; }
+    .news-item { background: #fff; padding: 18px 20px; border-left: 4px solid #333; border-radius: 8px; margin-bottom: 16px; }
+    .news-item time { display: block; color: #777; font-size: 13px; margin-bottom: 8px; }
+    footer { background: #333; color: #fff; text-align: center; padding: 18px; margin-top: 30px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>あなたの名前</h1>
+    <p>画家 / アーティスト</p>
+  </header>
+  <nav>
+    <a href="#gallery">ギャラリー</a>
+    <a href="#about">自己紹介</a>
+    <a href="#news">最新情報</a>
+    <a href="#contact">お問い合わせ</a>
+  </nav>
+  <div class="container">
+    <section id="gallery">
+      <h2>ギャラリー</h2>
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="作品1.jpg" alt="作品1">
+          <p>作品タイトル 1</p>
+        </div>
+        <div class="gallery-item">
+          <img src="作品2.jpg" alt="作品2">
+          <p>作品タイトル 2</p>
+        </div>
+        <div class="gallery-item">
+          <img src="作品3.jpg" alt="作品3">
+          <p>作品タイトル 3</p>
+        </div>
+        <div class="gallery-item">
+          <img src="作品4.jpg" alt="作品4">
+          <p>作品タイトル 4</p>
+        </div>
+      </div>
+    </section>
+    <section id="about">
+      <h2>自己紹介</h2>
+      <div class="box">
+        <p>ここに自己紹介を書きます。どんな作品を作っているか、普段どんな気持ちで制作しているかを伝えましょう。</p>
+      </div>
+    </section>
+    <section id="news">
+      <h2>最新情報</h2>
+      <div class="news-item">
+        <time>2026年6月19日</time>
+        <p>サイトを公開しました。</p>
+      </div>
+      <div class="news-item">
+        <time>2026年6月10日</time>
+        <p>次の個展の準備を開始しました。</p>
+      </div>
+    </section>
+    <section id="contact">
+      <h2>お問い合わせ</h2>
+      <div class="box">
+        <p>メール: your-email@example.com</p>
+        <p>Instagram / Twitter などのリンクをここに書きます。</p>
+      </div>
+    </section>
+  </div>
+  <footer>
+    <p>&copy; 2026 あなたの名前</p>
+  </footer>
+</body>
+</html>
