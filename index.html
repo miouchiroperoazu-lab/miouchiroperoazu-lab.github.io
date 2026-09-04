@@ -1,98 +1,131 @@
-<!-- updated: 2026-07-01 - pink design -->
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>私の作品 - ポートフォリオ</title>
-    <style>
-          * { margin: 0; padding: 0; box-sizing: border-box; }
-          body { font-family: 'Arial', sans-serif; background: #fff1f4; color: #3f1f33; }
-          header { background: #ffeef7; padding: 24px 20px; box-shadow: 0 3px 12px rgba(159, 72, 107, 0.12); }
-          header h1 { font-size: 32px; margin-bottom: 6px; }
-          header p { color: #7b4c68; }
-          nav { background: #bf5f85; text-align: center; padding: 12px 0; }
-          nav a { color: #fff; text-decoration: none; margin: 0 16px; font-size: 15px; }
-          nav a:hover { color: #ffe1ef; }
-          .container { max-width: 1080px; margin: 36px auto; padding: 0 20px; }
-          section { margin-bottom: 50px; }
-          section h2 { font-size: 28px; margin-bottom: 18px; border-bottom: 2px solid #bf5f85; padding-bottom: 10px; }
-          .gallery { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-          .gallery-item { background: #fff7fb; border-radius: 10px; overflow: hidden; box-shadow: 0 6px 18px rgba(159, 72, 107, 0.08); }
-          .gallery-item img { width: 100%; display: block; height: 220px; object-fit: cover; }
-          .gallery-item p { padding: 16px; text-align: center; font-size: 15px; color: #612d4d; }
-          .box { background: #fff7fb; padding: 28px; border-radius: 10px; box-shadow: 0 6px 18px rgba(159, 72, 107, 0.05); line-height: 1.7; }
-          .news-item { background: #fff7fb; padding: 18px 20px; border-left: 4px solid #bf5f85; border-radius: 8px; margin-bottom: 16px; }
-          .news-item time { display: block; color: #8b5a71; font-size: 13px; margin-bottom: 8px; }
-          footer { background: #7c385a; color: #fff; text-align: center; padding: 18px; margin-top: 30px; }
-        </style>
-  </head>
-  <body>
-      <header>
-            <h1>桜扉まどか</h1>
-          <p>画家、作家</p>
-      </header>
-    <nav>
-          <a href="#gallery">ギャラリー</a>a>
-          <a href="#about">自己紹介</a>a>
-          <a href="#news">最新情報</a>a>
-          <a href="#contact">お問い合わせ</a>a>
-    </nav>
-      <div class="container">
-            <section id="gallery">
-                    <h2>ギャラリー</h2>
-                    <div class="gallery">
-                              <div class="gallery-item">
-                                          <img src="作品1.jpg" alt="作品1">
-                                          <p>あかしたい</p>
-                              </div>div>
-                              <div class="gallery-item">
-                                          <img src="作品2.jpg" alt="作品2">
-                                          <p>Heartgazing</p>
-                              </div>div>
-                              <div class="gallery-item">
-                                          <img src="作品3.jpg" alt="作品3">
-                                          <p>花殻を摘んで</p>
-                              </div>div>
-                              <div class="gallery-item">
-                                          <img src="作品4.jpg" alt="作品4">
-                                          <p>上書き破損</p>
-                              </div>div>
-                    </div>div>
-            </section>section>
-            <section id="about">
-                    <h2>自己紹介</h2>
-                    <div class="box">
-                              <p>歪な鋳型で形成され、歪であり続ける自己の魂が、むしろ普遍的な愛への切望を抱く中で、他者との共鳴が生まれることを願っている。</p>
-                    </div>div>
-            </section>section>
-            <section id="news">
-                    <h2>最新情報</h2>
-                    <div class="news-item">
-                              <time>2026年6月19日</time>
-                            <p>サイトを公開しました。</p>
-                    </div>div>
-                  <div class="news-item">
-                          <time>2026年6月10日</time>
-                          <p>次の個展の準備を開始しました。</p>
-                  </div>div>
-            </section>section>
-          <section id="contact">
-                <h2>お問い合わせ</h2>
-                <div class="box">
-                        <p>メール: madokasakurado@gmail.com</p>
-                        <p>Instagram / Twitter などのリンクをここに書きます。</p>
-                </div>div>
-          </section>section>
-      </div>div>
-    <footer>
-          <p>&copy; 2026 桜扉まどか</p>p>
-    </footer>
-  </body>
-</html>html>
-    </footer></p></p></time>
-    </nav></p></h1>
-      </header>
-  </body>
-    </style></title>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>桜扉まどか | 画家・作家</title>
+  <link rel="canonical" href="https://sakuradomadoka.com/">
+  <meta name="description" content="桜扉まどかの公式ポートフォリオ。絵画作品、展示会情報、最新のお知らせ、お問い合わせをご案内します。">
+  <meta name="author" content="桜扉まどか">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:title" content="桜扉まどか | 画家・作家">
+  <meta property="og:description" content="桜扉まどかの公式ポートフォリオ。絵画作品、展示会情報、最新のお知らせをご案内します。">
+  <meta property="og:url" content="https://sakuradomadoka.com/">
+  <meta property="og:site_name" content="桜扉まどか">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "桜扉まどか",
+    "jobTitle": "画家、作家",
+    "description": "桜扉まどかの公式ポートフォリオ。絵画作品、展示会情報、最新のお知らせをご案内します。"
+  }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Arial', sans-serif; background: #fff1f4; color: #3f1f33; }
+    header { background: #ffeef7; padding: 24px 20px; box-shadow: 0 3px 12px rgba(159, 72, 107, 0.12); }
+    header h1 { font-size: 32px; margin-bottom: 6px; }
+    header p { color: #7b4c68; }
+    nav { background: #bf5f85; text-align: center; padding: 12px 0; }
+    nav a { color: #fff; text-decoration: none; margin: 0 16px; font-size: 15px; display: inline-block; }
+    nav a:hover { color: #ffe1ef; }
+    .container { max-width: 1080px; margin: 36px auto; padding: 0 20px; }
+    section { margin-bottom: 50px; }
+    section h2 { font-size: 28px; margin-bottom: 18px; border-bottom: 2px solid #bf5f85; padding-bottom: 10px; }
+    .gallery { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .gallery-item { background: #fff7fb; border-radius: 10px; overflow: hidden; box-shadow: 0 6px 18px rgba(159, 72, 107, 0.08); }
+    .gallery-item img { width: 100%; display: block; height: 220px; object-fit: cover; }
+    .gallery-item p { padding: 16px; text-align: center; font-size: 15px; color: #612d4d; }
+    .box { background: #fff7fb; padding: 28px; border-radius: 10px; box-shadow: 0 6px 18px rgba(159, 72, 107, 0.05); line-height: 1.7; }
+    .news-item { background: #fff7fb; padding: 18px 20px; border-left: 4px solid #bf5f85; border-radius: 8px; margin-bottom: 16px; }
+    .news-item time { display: block; color: #8b5a71; font-size: 13px; margin-bottom: 8px; }
+    .exhibition-list article { margin-bottom: 18px; }
+    .exhibition-list h3 { font-size: 18px; margin-bottom: 8px; color: #5f2e53; }
+    .contact-form .btn { display: inline-block; margin-top: 14px; padding: 10px 18px; background: #bf5f85; color: #fff; text-decoration: none; border-radius: 999px; }
+    .contact-form .btn:hover { background: #9c486d; }
+    footer { background: #7c385a; color: #fff; text-align: center; padding: 18px; margin-top: 30px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>桜扉まどか</h1>
+    <p>画家、作家</p>
+  </header>
+  <nav>
+    <a href="#gallery">ギャラリー</a>
+    <a href="#about">自己紹介</a>
+    <a href="#exhibitions">展示会</a>
+    <a href="#news">最新情報</a>
+    <a href="#contact">お問い合わせ</a>
+  </nav>
+  <div class="container">
+    <section id="gallery">
+      <h2>ギャラリー</h2>
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="作品1.jpg" alt="作品1">
+          <p>あかしたい</p>
+        </div>
+        <div class="gallery-item">
+          <img src="作品2.jpg" alt="作品2">
+          <p>Heartgazing</p>
+        </div>
+        <div class="gallery-item">
+          <img src="作品3.jpg" alt="作品3">
+          <p>花殻を摘んで</p>
+        </div>
+        <div class="gallery-item">
+          <img src="作品4.jpg" alt="作品4">
+          <p>上書き破損</p>
+        </div>
+      </div>
+    </section>
+    <section id="about">
+      <h2>自己紹介</h2>
+      <div class="box">
+        <p>歪な鋳型で形成され、歪であり続ける自己の魂が、むしろ普遍的な愛への切望を抱く中で、他者との共鳴が生まれることを願っている。</p>
+      </div>
+    </section>
+    <section id="exhibitions">
+      <h2>展示会</h2>
+      <div class="box exhibition-list">
+        <article>
+          <h3>巡る熱は美証</h3>
+          <p>2026年9月6日〜12日</p>
+          <p>新作を中心に、光と赤をテーマにしたインスタレーションを展示します。</p>
+        </article>
+        <article>
+          <h3>桜扉の夜想</h3>
+          <p>2026年12月1日〜7日</p>
+          <p>個展「桜扉の夜想」では、詩的な色彩と繊細な線が織りなす世界をお届けします。</p>
+        </article>
+      </div>
+    </section>
+    <section id="news">
+      <h2>最新情報</h2>
+      <div class="news-item">
+        <time>2026年6月19日</time>
+        <p>サイトを公開しました。</p>
+      </div>
+      <div class="news-item">
+        <time>2026年6月10日</time>
+        <p>次の個展の準備を開始しました。</p>
+      </div>
+    </section>
+    <section id="contact">
+      <h2>お問い合わせ</h2>
+      <div class="box contact-form">
+        <p>メール: madokasakurado@gmail.com</p>
+        <p>Instagram / Twitter などのリンクをここに書きます。</p>
+        <a class="btn" href="mailto:madokasakurado@gmail.com">メールで連絡する</a>
+      </div>
+    </section>
+  </div>
+  <footer>
+    <p>&copy; 2026 桜扉まどか</p>
+  </footer>
+</body>
+</html>
