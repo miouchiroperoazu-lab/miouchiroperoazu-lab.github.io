@@ -88,6 +88,43 @@
       .gallery-item:nth-child(even) { margin-top: 0; }
       .gallery-item img { height: 88vw; }
       section { margin-bottom: 64px; }
+      body.intro-entered #about .box {
+        top: 7vh;
+        width: 88vw;
+        padding: 12px 8px;
+      }
+      body.intro-entered #about p {
+        font-size: clamp(15px, 4.5vw, 20px);
+        line-height: 1.45;
+      }
+      body.intro-entered #about p + p {
+        margin-top: 8px;
+      }
+      body.intro-entered #contact {
+        bottom: 10px;
+        width: 92vw;
+      }
+      body.intro-entered #contact .box {
+        min-height: 104px;
+        padding: 8px 10px;
+      }
+      body.intro-entered #contact .contact-form p {
+        margin-bottom: 6px;
+        font-size: 13px;
+      }
+      body.intro-entered #contact .social-banners {
+        gap: 6px;
+      }
+      body.intro-entered #contact .social-banner {
+        flex: 1 1 0;
+        max-width: 104px;
+        padding: 9px 6px;
+        font-size: 12px;
+      }
+      body.intro-entered .menu-button {
+        top: 14px;
+        right: 14px;
+      }
     }
 
     #about { position: relative; min-height: calc(100vh - 160px); display: grid; place-items: center; margin: 0 -4vw 100px; padding: 60px 4vw; background: linear-gradient(rgba(255,247,250,.60), rgba(255,247,250,.60)), url('作品1.jpg') center center / cover no-repeat; }
