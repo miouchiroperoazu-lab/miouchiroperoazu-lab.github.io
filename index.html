@@ -208,6 +208,33 @@
     body.view-contact #contact { position: relative; inset: auto; min-height: calc(100vh - 160px); width: auto; margin-bottom: 100px; transform: none; }
 
     body.view-contact #contact h2 { display: block; }
+
+    body.intro-entered .menu-button {
+      position: fixed;
+      top: 24px;
+      right: 4vw;
+      z-index: 2000;
+      display: flex;
+      color: #5e384a;
+      background: rgba(255,247,250,.72);
+      border-radius: 50%;
+      box-shadow: 0 4px 14px rgba(94,56,74,.12);
+    }
+
+    @media (min-width: 651px) and (min-height: 701px) {
+      body.intro-entered #about .box {
+        top: 8vh;
+        width: min(680px, 70vw);
+      }
+      body.intro-entered #about p {
+        font-size: clamp(20px, 2vw, 28px);
+        line-height: 1.55;
+        margin: 0;
+      }
+      body.intro-entered #about p + p {
+        margin-top: 14px;
+      }
+    }
   </style>
 </head>
 <body>
