@@ -26,7 +26,7 @@
   <style>
     :root { --ink: #5e384a; --paper: #fff7fa; --accent: #f58ab4; }
     html { scroll-behavior: smooth; }
-    body { background: var(--paper); color: var(--ink); font-family: 'Hiragino Kaku Gothic ProN W0', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif; font-weight: 300; }
+    body { background: var(--paper); color: var(--ink); font-family: 'Hiragino Sans W1', 'Hiragino Kaku Gothic ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif; font-weight: 200; }
     body:not(.intro-entered) { overflow: hidden; }
 
     .intro {
@@ -45,45 +45,111 @@
       font-family: inherit; transition: opacity .35s, transform .35s;
     }
     .enter-button:hover { transform: translateY(-3px); background: transparent; }
-    .enter-button strong { font-size: clamp(34px, 6vw, 72px); font-family: 'Hiragino Kaku Gothic ProN W0', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif; font-weight: 300; letter-spacing: .02em; white-space: nowrap; }
+    .enter-button strong { font-size: clamp(34px, 6vw, 72px); font-family: 'Hiragino Sans W1', 'Hiragino Kaku Gothic ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif; font-weight: 200; letter-spacing: .02em; white-space: nowrap; }
     .enter-button span { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; }
 
-    header { background: var(--paper); box-shadow: none; padding: 28px 4vw; border-bottom: 1px solid #d8d1d4; }
-    header h1 { font-family: 'Hiragino Kaku Gothic ProN W0', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif; font-weight: 300; }
-    nav { position: sticky; top: 0; z-index: 20; background: rgba(245,241,239,.92); backdrop-filter: blur(12px); border-bottom: 1px solid #d8d1d4; }
+    header { background: var(--paper); box-shadow: none; padding: 28px 4vw; border-bottom: 1px solid #d8d1d4; text-align: center; position: relative; }
+    header h1 { font-family: 'Hiragino Sans W1', 'Hiragino Kaku Gothic ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif; font-weight: 200; display: flex; flex-direction: column; gap: 6px; }
+    nav { position: sticky; top: 0; z-index: 20; background: rgba(245,241,239,.92); backdrop-filter: blur(12px); border-bottom: 1px solid #d8d1d4; text-align: center; }
+    nav:not(.menu-panel) { display: none; }
     nav a { color: var(--ink); margin: 0 2.2vw; padding: 4px 0; text-transform: uppercase; letter-spacing: .12em; font-size: 11px; }
     nav a:hover { color: var(--accent); }
     .container { max-width: 1180px; margin: 0 auto; padding: 60px 4vw 20px; }
     section { margin-bottom: 100px; }
-    section h2 { border: 0; font-family: 'Hiragino Kaku Gothic ProN W0', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif; font-weight: 300; }
-    .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4vw 24px; }
+    section h2 { border: 0; font-family: 'Hiragino Sans W1', 'Hiragino Kaku Gothic ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif; font-weight: 200; text-align: center; }
+    .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 24px; }
     .gallery-item { background: transparent; border-radius: 0; box-shadow: none; }
-    .gallery-item:nth-child(even) { margin-top: 80px; }
+    .gallery-item:nth-child(even) { margin-top: 0; }
     .gallery-item img { height: min(58vw, 620px); background: #d9cbd1; }
-    .gallery-item p { text-align: left; padding: 14px 0; font-family: 'Hiragino Kaku Gothic ProN W0', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif; font-weight: 300; }
+    .gallery-item p { text-align: center; padding: 14px 0; font-family: 'Hiragino Sans W1', 'Hiragino Kaku Gothic ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif; font-weight: 200; }
     .box { background: transparent; border-top: 1px solid #c8bec2; border-radius: 0; padding: 24px 0; box-shadow: none; }
-    #about .box { max-width: 760px; }
-    #about p { font-family: 'Hiragino Kaku Gothic ProN W0', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif; font-weight: 300; }
-    .social-banners { margin-top: 24px; }
-    .social-banner { border-radius: 0; border: 1px solid #b7adb1; color: var(--ink); background: transparent; text-transform: uppercase; letter-spacing: .16em; font-size: 11px; }
-    .social-banner:hover { background: var(--ink); color: #fff; filter: none; }
-    footer { background: var(--ink); }
+    #about .box { max-width: 900px; border-top: 0; text-align: center; }
+    #about p { font-size: clamp(22px, 3vw, 40px); line-height: 1.8; }
+    .social-banners { margin: 24px auto 0; justify-content: center; max-width: 760px; }
+    .social-banner { flex: 1 1 150px; max-width: 220px; border-radius: 999px; border: 0; color: #fff; background: #c94f7c; text-transform: none; letter-spacing: .04em; font-size: 13px; padding: 12px 18px; box-shadow: 0 8px 18px rgba(201,79,124,.16); }
+    .social-banner.instagram { background: #dc5a91; }
+    .social-banner.x { background: #dc5a91; }
+    .social-banner.tiktok { background: #dc5a91; }
+    .contact-form { text-align: center; }
+    footer { background: transparent; color: var(--ink); text-align: center; padding: 20px 0; }
+
+    .menu-button { position: absolute; top: 24px; right: 4vw; width: 38px; height: 38px; border: 0; background: transparent; color: var(--ink); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
+    .menu-button span { display: block; width: 24px; height: 1.5px; background: currentColor; transition: transform .25s; }
+    .menu-panel { position: absolute; top: 70px; right: 4vw; z-index: 30; display: none; min-width: 180px; padding: 14px; background: rgba(255,247,250,.96); border: 1px solid #ead8df; box-shadow: 0 12px 30px rgba(94,56,74,.12); }
+    .menu-panel.open { display: grid; }
+    .menu-panel a { color: var(--ink); text-decoration: none; padding: 12px 10px; text-align: left; border-bottom: 1px solid #ead8df; font-size: 13px; }
+    .menu-panel a:last-child { border-bottom: 0; }
 
     @media (max-width: 650px) {
       .intro-inner { padding: 18px; }
       .enter-button { width: auto; height: auto; }
       nav a { margin: 0 8px; }
-      .gallery { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 10px; }
       .gallery-item:nth-child(even) { margin-top: 0; }
       .gallery-item img { height: 88vw; }
       section { margin-bottom: 64px; }
     }
+
+    #about { position: relative; min-height: calc(100vh - 160px); display: grid; place-items: center; margin: 0 -4vw 100px; padding: 60px 4vw; background: linear-gradient(rgba(255,247,250,.60), rgba(255,247,250,.60)), url('作品1.jpg') center / cover no-repeat; }
+
+    body.intro-entered header { display: none; }
+    body.intro-entered .container { max-width: none; width: 100%; margin: 0; padding: 0; }
+    body.intro-entered .menu-button { position: fixed; top: 24px; right: 4vw; z-index: 100; }
+    body.intro-entered .menu-panel { position: fixed; top: 70px; right: 4vw; z-index: 99; }
+    body.intro-entered #about { position: fixed; inset: 0; z-index: 0; width: 100%; min-height: 100vh; margin: 0; padding: 60px 8vw 180px; background: linear-gradient(rgba(255,247,250,.52), rgba(255,247,250,.52)), url('作品1.jpg') center / cover no-repeat; }
+    body.intro-entered #about .box { position: relative; z-index: 2; }
+    body.intro-entered #gallery,
+    body.intro-entered #exhibitions { display: none; }
+    body.intro-entered #contact { position: fixed; left: 50%; bottom: 32px; z-index: 3; width: min(760px, 92vw); margin: 0; transform: translateX(-50%); }
+    body.intro-entered #contact h2 { display: none; }
+    body.intro-entered #contact .box { border-top: 0; padding: 12px 16px; background: rgba(255,247,250,.82); backdrop-filter: blur(10px); }
+    body.intro-entered #about { grid-template-rows: 1fr auto; place-items: start center; overflow: hidden; padding: 10vh 8vw 210px; }
+    body.intro-entered #about .box { align-self: start; margin: 0 auto; }
+    body.intro-entered #contact { bottom: 24px; }
+    body.intro-entered #contact .box { min-height: 112px; display: grid; align-content: center; }
+
+    @media (max-height: 700px) {
+      body.intro-entered #about { padding: 8vh 6vw 150px; }
+      body.intro-entered #about p { font-size: clamp(18px, 3.2vh, 28px); }
+      body.intro-entered #contact { bottom: 12px; }
+      body.intro-entered #contact .box { min-height: 92px; padding: 8px 12px; }
+    }
+
+    body.view-gallery #about,
+    body.view-gallery #contact,
+    body.view-gallery #exhibitions,
+    body.view-exhibitions #about,
+    body.view-exhibitions #contact,
+    body.view-exhibitions #gallery,
+    body.view-about #gallery,
+    body.view-about #exhibitions,
+    body.view-about #contact,
+    body.view-contact #about,
+    body.view-contact #gallery,
+    body.view-contact #exhibitions { display: none; }
+
+    body.view-gallery #gallery,
+    body.view-exhibitions #exhibitions,
+    body.view-about #about,
+    body.view-contact #contact { display: block; }
+
+    body.view-gallery .container,
+    body.view-exhibitions .container,
+    body.view-about .container,
+    body.view-contact .container { max-width: 1180px; margin: 0 auto; padding: 40px 4vw 20px; }
+
+    body.view-gallery #gallery,
+    body.view-exhibitions #exhibitions,
+    body.view-about #about,
+    body.view-contact #contact { position: relative; inset: auto; min-height: calc(100vh - 160px); width: auto; margin-bottom: 100px; transform: none; }
+
+    body.view-contact #contact h2 { display: block; }
   </style>
 </head>
 <body>
   <div class="intro" aria-label="サイト導入画面">
     <div class="intro-inner">
-      <div class="intro-meta"><span>PAINTER / WRITER</span><span>2026</span></div>
+      <div class="intro-meta"><span>PAINTER / CREATOR</span><span>2026</span></div>
       <button class="enter-button" type="button" aria-label="桜扉まどかのサイトを見る">
         <strong>桜扉まどか</strong>
         <span>Madoka Sakurado</span>
@@ -92,18 +158,26 @@
     </div>
   </div>
   <header>
-    <h1>桜扉まどか</h1>
-    <p>画家、作家</p>
+    <h1><span>桜扉まどか</span><span lang="en">Madoka Sakurado</span></h1>
+    <p>画家、作家 <span lang="en">/ Painter, Creator</span></p>
   </header>
-  <nav>
-    <a href="#gallery">ギャラリー</a>
-    <a href="#about">自己紹介</a>
-    <a href="#exhibitions">展示会</a>
-    <a href="#contact">お問い合わせ</a>
+  <button class="menu-button" type="button" aria-label="メニューを開く" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="menu-panel" aria-label="ページメニュー">
+    <a href="#gallery" data-view="gallery">ギャラリー / Gallery</a>
+    <a href="#exhibitions" data-view="exhibitions">展示会 / Exhibitions</a>
+    <a href="#contact" data-view="contact">お問い合わせ / Contact</a>
   </nav>
   <div class="container">
+    <section id="about">
+      <div class="box">
+        <p>優しさと暴力性を同時に表現できるピンクによって、あなたとわたしとの共鳴という、愛の萌芽を育みたい。</p>
+        <p lang="en">Through pink, expressing both kindness and violence, I hope to nurture the seed of love born from resonance between you and me.</p>
+      </div>
+    </section>
     <section id="gallery">
-      <h2>ギャラリー</h2>
+      <h2>ギャラリー / Gallery</h2>
       <div class="gallery">
         <div class="gallery-item">
           <img src="作品1.jpg" alt="作品1">
@@ -111,7 +185,7 @@
         </div>
         <div class="gallery-item">
           <img src="作品2.jpg" alt="作品2">
-          <p>Heartgazing</p>
+          <p>光源のあなた</p>
         </div>
         <div class="gallery-item">
           <img src="作品3.jpg" alt="作品3">
@@ -123,19 +197,13 @@
         </div>
       </div>
     </section>
-    <section id="about">
-      <h2>自己紹介</h2>
-      <div class="box">
-        <p>優しさと暴力性を同時に表現できるピンクによって、あなたとわたしとの共鳴という、愛の萌芽を育みたい。</p>
-      </div>
-    </section>
     <section id="exhibitions">
-      <h2>展示会</h2>
+      <h2>展示会 / Exhibitions</h2>
       <div class="box exhibition-list">
       </div>
     </section>
     <section id="contact">
-      <h2>お問い合わせ</h2>
+      <h2>お問い合わせ / Contact</h2>
       <div class="box contact-form">
         <p>メール: madokasakurado@gmail.com</p>
         <div class="social-banners">
@@ -153,6 +221,26 @@
     document.querySelector('.enter-button').addEventListener('click', function () {
       document.body.classList.add('intro-entered');
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    const menuButton = document.querySelector('.menu-button');
+    const menuPanel = document.querySelector('.menu-panel');
+
+    menuButton.addEventListener('click', function () {
+      const isOpen = menuPanel.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    menuPanel.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        const view = link.dataset.view;
+
+        document.body.classList.remove('view-gallery', 'view-exhibitions', 'view-about', 'view-contact');
+        document.body.classList.add('view-' + view);
+        menuPanel.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     });
   </script>
 </body>
