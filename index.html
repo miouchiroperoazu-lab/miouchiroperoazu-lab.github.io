@@ -24,32 +24,73 @@
   }
   </script>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Arial', sans-serif; background: #fff1f4; color: #3f1f33; }
-    header { background: #ffeef7; padding: 24px 20px; box-shadow: 0 3px 12px rgba(159, 72, 107, 0.12); }
-    header h1 { font-size: 32px; margin-bottom: 6px; }
-    header p { color: #7b4c68; }
-    nav { background: #bf5f85; text-align: center; padding: 12px 0; }
-    nav a { color: #fff; text-decoration: none; margin: 0 16px; font-size: 15px; display: inline-block; }
-    nav a:hover { color: #ffe1ef; }
-    .container { max-width: 1080px; margin: 36px auto; padding: 0 20px; }
-    section { margin-bottom: 50px; }
-    section h2 { font-size: 28px; margin-bottom: 18px; border-bottom: 2px solid #bf5f85; padding-bottom: 10px; }
-    .gallery { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-    .gallery-item { background: #fff7fb; border-radius: 10px; overflow: hidden; box-shadow: 0 6px 18px rgba(159, 72, 107, 0.08); }
-    .gallery-item img { width: 100%; display: block; height: 220px; object-fit: cover; }
-    .gallery-item p { padding: 16px; text-align: center; font-size: 15px; color: #612d4d; }
-    .box { background: #fff7fb; padding: 28px; border-radius: 10px; box-shadow: 0 6px 18px rgba(159, 72, 107, 0.05); line-height: 1.7; }
-    .news-item { background: #fff7fb; padding: 18px 20px; border-left: 4px solid #bf5f85; border-radius: 8px; margin-bottom: 16px; }
-    .news-item time { display: block; color: #8b5a71; font-size: 13px; margin-bottom: 8px; }
-    .exhibition-list article { margin-bottom: 18px; }
-    .exhibition-list h3 { font-size: 18px; margin-bottom: 8px; color: #5f2e53; }
-    .contact-form .btn { display: inline-block; margin-top: 14px; padding: 10px 18px; background: #bf5f85; color: #fff; text-decoration: none; border-radius: 999px; }
-    .contact-form .btn:hover { background: #9c486d; }
-    footer { background: #7c385a; color: #fff; text-align: center; padding: 18px; margin-top: 30px; }
+    :root { --ink: #5e384a; --paper: #fff7fa; --accent: #f58ab4; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--paper); color: var(--ink); font-family: 'Helvetica Neue', 'Hiragino Kaku Gothic ProN', sans-serif; }
+    body:not(.intro-entered) { overflow: hidden; }
+
+    .intro {
+      position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center;
+      background: #f5b5ca url('作品1.jpg') center / cover no-repeat;
+      transition: opacity 1s cubic-bezier(.7,0,.2,1), visibility 1s;
+    }
+    .intro::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(20,10,16,.50), rgba(20,10,16,.05) 55%, rgba(20,10,16,.35)); }
+    .intro-entered .intro { opacity: 0; visibility: hidden; pointer-events: none; }
+    .intro-inner { position: relative; z-index: 1; width: 100%; height: 100%; display: grid; grid-template-rows: 1fr auto 1fr; padding: 28px; color: #fff; }
+    .intro-meta { align-self: start; display: flex; justify-content: space-between; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; }
+    .enter-button {
+      align-self: center; justify-self: center; border: 1px solid rgba(255,255,255,.9); background: rgba(20,10,16,.18);
+      backdrop-filter: blur(8px); color: #fff; width: 290px; height: 210px; border-radius: 50%; cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+      font-family: inherit; transition: transform .45s, background .45s;
+    }
+    .enter-button:hover { transform: scale(1.04); background: rgba(255,255,255,.16); }
+    .enter-button strong { font-size: clamp(22px, 3vw, 38px); font-family: Georgia, serif; font-weight: normal; letter-spacing: .02em; white-space: nowrap; }
+    .enter-button span { font-size: 10px; letter-spacing: .35em; }
+
+    header { background: var(--paper); box-shadow: none; padding: 28px 4vw; border-bottom: 1px solid #d8d1d4; }
+    header h1 { font-family: Georgia, serif; font-size: clamp(28px, 4vw, 52px); font-weight: normal; }
+    nav { position: sticky; top: 0; z-index: 20; background: rgba(245,241,239,.92); backdrop-filter: blur(12px); border-bottom: 1px solid #d8d1d4; }
+    nav a { color: var(--ink); margin: 0 2.2vw; padding: 4px 0; text-transform: uppercase; letter-spacing: .12em; font-size: 11px; }
+    nav a:hover { color: var(--accent); }
+    .container { max-width: 1180px; margin: 0 auto; padding: 60px 4vw 20px; }
+    section { margin-bottom: 100px; }
+    section h2 { border: 0; font-family: Georgia, serif; font-size: clamp(38px, 7vw, 88px); font-weight: normal; letter-spacing: -.04em; }
+    .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4vw 24px; }
+    .gallery-item { background: transparent; border-radius: 0; box-shadow: none; }
+    .gallery-item:nth-child(even) { margin-top: 80px; }
+    .gallery-item img { height: min(58vw, 620px); background: #d9cbd1; }
+    .gallery-item p { text-align: left; padding: 14px 0; font-family: Georgia, serif; font-size: 18px; }
+    .box { background: transparent; border-top: 1px solid #c8bec2; border-radius: 0; padding: 24px 0; box-shadow: none; }
+    #about .box { max-width: 760px; }
+    #about p { font-family: Georgia, serif; font-size: clamp(22px, 3.2vw, 38px); line-height: 1.55; }
+    .social-banners { margin-top: 24px; }
+    .social-banner { border-radius: 0; border: 1px solid #b7adb1; color: var(--ink); background: transparent; text-transform: uppercase; letter-spacing: .16em; font-size: 11px; }
+    .social-banner:hover { background: var(--ink); color: #fff; filter: none; }
+    footer { background: var(--ink); }
+
+    @media (max-width: 650px) {
+      .intro-inner { padding: 18px; }
+      .enter-button { width: 260px; height: 180px; }
+      nav a { margin: 0 8px; }
+      .gallery { grid-template-columns: 1fr; }
+      .gallery-item:nth-child(even) { margin-top: 0; }
+      .gallery-item img { height: 88vw; }
+      section { margin-bottom: 64px; }
+    }
   </style>
 </head>
 <body>
+  <div class="intro" aria-label="サイト導入画面">
+    <div class="intro-inner">
+      <div class="intro-meta"><span>PAINTER / WRITER</span><span>2026</span></div>
+      <button class="enter-button" type="button" aria-label="桜扉まどかのサイトを見る">
+        <strong>桜扉まどか</strong>
+        <span>ENTER</span>
+      </button>
+      <div></div>
+    </div>
+  </div>
   <header>
     <h1>桜扉まどか</h1>
     <p>画家、作家</p>
@@ -58,7 +99,6 @@
     <a href="#gallery">ギャラリー</a>
     <a href="#about">自己紹介</a>
     <a href="#exhibitions">展示会</a>
-    <a href="#news">最新情報</a>
     <a href="#contact">お問い合わせ</a>
   </nav>
   <div class="container">
@@ -86,46 +126,34 @@
     <section id="about">
       <h2>自己紹介</h2>
       <div class="box">
-        <p>歪な鋳型で形成され、歪であり続ける自己の魂が、むしろ普遍的な愛への切望を抱く中で、他者との共鳴が生まれることを願っている。</p>
+        <p>優しさと暴力性を同時に表現できるピンクによって、あなたとわたしとの共鳴という、愛の萌芽を育みたい。</p>
       </div>
     </section>
     <section id="exhibitions">
       <h2>展示会</h2>
       <div class="box exhibition-list">
-        <article>
-          <h3>巡る熱は美証</h3>
-          <p>2026年9月6日〜12日</p>
-          <p>新作を中心に、光と赤をテーマにしたインスタレーションを展示します。</p>
-        </article>
-        <article>
-          <h3>桜扉の夜想</h3>
-          <p>2026年12月1日〜7日</p>
-          <p>個展「桜扉の夜想」では、詩的な色彩と繊細な線が織りなす世界をお届けします。</p>
-        </article>
-      </div>
-    </section>
-    <section id="news">
-      <h2>最新情報</h2>
-      <div class="news-item">
-        <time>2026年6月19日</time>
-        <p>サイトを公開しました。</p>
-      </div>
-      <div class="news-item">
-        <time>2026年6月10日</time>
-        <p>次の個展の準備を開始しました。</p>
       </div>
     </section>
     <section id="contact">
       <h2>お問い合わせ</h2>
       <div class="box contact-form">
         <p>メール: madokasakurado@gmail.com</p>
-        <p>Instagram / Twitter などのリンクをここに書きます。</p>
-        <a class="btn" href="mailto:madokasakurado@gmail.com">メールで連絡する</a>
+        <div class="social-banners">
+          <a class="social-banner instagram" href="https://www.instagram.com/sakuradomadoka/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a class="social-banner x" href="https://x.com/sakuradomadoka" target="_blank" rel="noopener noreferrer">X</a>
+          <a class="social-banner tiktok" href="https://www.tiktok.com/@sakurado.madoka" target="_blank" rel="noopener noreferrer">TikTok</a>
+        </div>
       </div>
     </section>
   </div>
   <footer>
     <p>&copy; 2026 桜扉まどか</p>
   </footer>
+  <script>
+    document.querySelector('.enter-button').addEventListener('click', function () {
+      document.body.classList.add('intro-entered');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
 </body>
 </html>
