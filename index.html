@@ -90,29 +90,87 @@
       section { margin-bottom: 64px; }
     }
 
-    #about { position: relative; min-height: calc(100vh - 160px); display: grid; place-items: center; margin: 0 -4vw 100px; padding: 60px 4vw; background: linear-gradient(rgba(255,247,250,.60), rgba(255,247,250,.60)), url('作品1.jpg') center / cover no-repeat; }
+    #about { position: relative; min-height: calc(100vh - 160px); display: grid; place-items: center; margin: 0 -4vw 100px; padding: 60px 4vw; background: linear-gradient(rgba(255,247,250,.60), rgba(255,247,250,.60)), url('作品1.jpg') center center / cover no-repeat; }
     #about { background-position: center center; background-size: cover; background-repeat: no-repeat; }
-    body.intro-entered #about { background-position: center center; background-size: cover; background-repeat: no-repeat; }
+    body.intro-entered #about {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      right: auto;
+      bottom: 0;
+      z-index: 0;
+      display: block;
+      width: 100vw;
+      height: 100dvh;
+      min-height: 100dvh;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      transform: translateX(-50%);
+      background-image: linear-gradient(rgba(255,247,250,.52), rgba(255,247,250,.52)), url('作品1.jpg');
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    body.intro-entered #about .box {
+      position: absolute;
+      top: 10vh;
+      left: 50%;
+      width: min(760px, 84vw);
+      max-width: 760px;
+      margin: 0;
+      padding: 24px;
+      box-sizing: border-box;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+    body.intro-entered #about p {
+      width: 100%;
+      margin-inline: 0;
+      text-align: center;
+    }
 
-    body.intro-entered header { display: none; }
-    body.intro-entered .container { max-width: none; width: 100%; margin: 0; padding: 0; }
-    body.intro-entered .menu-button { position: fixed; top: 24px; right: 4vw; z-index: 100; }
-    body.intro-entered .menu-panel { position: fixed; top: 70px; right: 4vw; z-index: 99; }
-    body.intro-entered #about { position: fixed; inset: 0; z-index: 0; width: 100%; min-height: 100vh; margin: 0; padding: 60px 8vw 180px; background: linear-gradient(rgba(255,247,250,.52), rgba(255,247,250,.52)), url('作品1.jpg') center / cover no-repeat; }
-    body.intro-entered #about .box { position: relative; left: auto; width: min(900px, 84vw); margin: 0 auto; transform: none; justify-self: center; }
-    body.intro-entered #gallery,
-    body.intro-entered #exhibitions { display: none; }
-    body.intro-entered #contact { position: fixed; left: 50%; bottom: 32px; z-index: 3; width: min(760px, 92vw); margin: 0; transform: translateX(-50%); }
+    body.intro-entered #contact {
+      position: fixed;
+      top: auto;
+      left: 50%;
+      right: auto;
+      bottom: 24px;
+      z-index: 3;
+      width: min(760px, 92vw);
+      margin: 0;
+      transform: translateX(-50%);
+      text-align: center;
+    }
     body.intro-entered #contact h2 { display: none; }
-    body.intro-entered #contact .box { border-top: 0; padding: 12px 16px; background: rgba(255,247,250,.82); backdrop-filter: blur(10px); }
-    body.intro-entered #about { grid-template-rows: 1fr auto; place-items: start center; overflow: hidden; padding: 10vh 8vw 210px; }
-    body.intro-entered #about .box { align-self: start; margin: 0 auto; }
-    body.intro-entered #contact { bottom: 24px; }
-    body.intro-entered #contact .box { min-height: 112px; display: grid; align-content: center; }
-    body.intro-entered #about { left: 0; right: 0; width: 100%; }
-    body.intro-entered #about .box { left: 50%; width: min(900px, 84vw); transform: translateX(-50%); }
-    body.intro-entered #contact { left: 0; right: 0; width: min(760px, 92vw); margin: 0 auto; transform: none; }
-    body.intro-entered #contact .box { box-sizing: border-box; width: 100%; }
+    body.intro-entered #contact .box {
+      box-sizing: border-box;
+      width: 100%;
+      min-height: 112px;
+      margin: 0 auto;
+      border-top: 0;
+      padding: 12px 16px;
+      background: rgba(255,247,250,.82);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    body.intro-entered #contact .contact-form p {
+      width: 100%;
+      margin: 0 0 10px;
+      text-align: center;
+    }
+    body.intro-entered #contact .social-banners {
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: center;
+    }
 
     @media (max-height: 700px) {
       body.intro-entered #about { padding: 8vh 6vw 150px; }
