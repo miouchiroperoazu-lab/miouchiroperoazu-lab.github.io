@@ -159,10 +159,10 @@
       padding: 0;
       overflow: hidden;
       transform: translateX(-50%);
-      background-image: linear-gradient(rgba(255,247,250,.52), rgba(255,247,250,.52)), url('作品1.jpg');
-      background-position: 50% 50%;
-      background-repeat: no-repeat;
-      background-size: cover;
+      background-image: linear-gradient(rgba(255,247,250,.52), rgba(255,247,250,.52)), url('作品1.jpg') !important;
+      background-position: center center !important;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
     }
     body.intro-entered #about .box {
       position: absolute;
@@ -369,6 +369,29 @@
       .artwork-modal-info { padding: 42px 20px 24px; }
       .artwork-modal-info h3 { font-size: 22px; }
     }
+
+    body.intro-entered header,
+    body.intro-entered footer { display: none !important; }
+
+    body.intro-entered:not(.view-gallery):not(.view-exhibitions):not(.view-contact) #gallery,
+    body.intro-entered:not(.view-gallery):not(.view-exhibitions):not(.view-contact) #exhibitions,
+    body.intro-entered:not(.view-gallery):not(.view-exhibitions):not(.view-contact) footer { display: none !important; }
+
+    body.intro-entered:not(.view-gallery):not(.view-exhibitions):not(.view-contact) #about {
+      display: block !important;
+    }
+
+    body.intro-entered.view-gallery #about,
+    body.intro-entered.view-gallery #contact,
+    body.intro_entered.view-exhibitions #about,
+    body.intro-entered.view-exhibitions #contact,
+    body.intro-entered.view-contact #about,
+    body.intro-entered.view-contact #gallery,
+    body.intro-entered.view-contact #exhibitions { display: none !important; }
+
+    body.intro-entered.view-gallery #gallery,
+    body.intro-entered.view-exhibitions #exhibitions,
+    body.intro-entered.view-contact #contact { display: block !important; }
   </style>
 </head>
 <body>
@@ -425,6 +448,44 @@
           <img src="作品4.jpg" alt="作品4">
           <p>上書き破損</p>
         </div>
+        <div class="gallery-item"><img src="42g.jpg" alt="42g"><p>42g</p></div>
+        <div class="gallery-item"><img src="An eden of punishment.jpg" alt="An eden of punishment"><p>An eden of punishment</p></div>
+        <div class="gallery-item"><img src="FxxKING HAPPINESS.jpg" alt="FxxKING HAPPINESS"><p>FxxKING HAPPINESS</p></div>
+        <div class="gallery-item"><img src="HAPPINESS.jpg" alt="HAPPINESS"><p>HAPPINESS</p></div>
+        <div class="gallery-item"><img src="You know how to find me.jpg" alt="You know how to find me"><p>You know how to find me</p></div>
+        <div class="gallery-item"><img src="almost heaven.jpg" alt="almost heaven"><p>almost heaven</p></div>
+        <div class="gallery-item"><img src="meforus.jpg" alt="meforus"><p>meforus</p></div>
+        <div class="gallery-item"><img src="おのれ.jpg" alt="おのれ"><p>おのれ</p></div>
+        <div class="gallery-item"><img src="かわいい運命.jpg" alt="かわいい運命"><p>かわいい運命</p></div>
+        <div class="gallery-item"><img src="こころ.jpg" alt="こころ"><p>こころ</p></div>
+        <div class="gallery-item"><img src="こころぼしひとつ.jpg" alt="こころぼしひとつ"><p>こころぼしひとつ</p></div>
+        <div class="gallery-item"><img src="こゕめんね.jpg" alt="こゕめんね"><p>こゕめんね</p></div>
+        <div class="gallery-item"><img src="こゕめんね２.jpg" alt="こゕめんね２"><p>こゕめんね２</p></div>
+        <div class="gallery-item"><img src="たかく翔ぶ.jpg" alt="たかく翔ぶ"><p>たかく翔ぶ</p></div>
+        <div class="gallery-item"><img src="まなざし.jpg" alt="まなざし"><p>まなざし</p></div>
+        <div class="gallery-item"><img src="サナトリウムのゆめ（さざんか散る）.jpg" alt="サナトリウムのゆめ（さざんか散る）"><p>サナトリウムのゆめ（さざんか散る）</p></div>
+        <div class="gallery-item"><img src="サナトリウムのゆめ（コスモス畑）.jpg" alt="サナトリウムのゆめ（コスモス畑）"><p>サナトリウムのゆめ（コスモス畑）</p></div>
+        <div class="gallery-item"><img src="不可侵.jpg" alt="不可侵"><p>不可侵</p></div>
+        <div class="gallery-item"><img src="作品38.jpg" alt="作品38"><p>作品38</p></div>
+        <div class="gallery-item"><img src="同じ鋳型から産まれてよ.jpg" alt="同じ鋳型から産まれてよ"><p>同じ鋳型から産まれてよ</p></div>
+        <div class="gallery-item"><img src="大好きだから.jpg" alt="大好きだから"><p>大好きだから</p></div>
+        <div class="gallery-item"><img src="愛される覚悟.jpg" alt="愛される覚悟"><p>愛される覚悟</p></div>
+        <div class="gallery-item"><img src="救われきれない.jpg" alt="救われきれない"><p>救われきれない</p></div>
+        <div class="gallery-item"><img src="曖昧な明瞭.jpg" alt="曖昧な明瞭"><p>曖昧な明瞭</p></div>
+        <div class="gallery-item"><img src="火種のわたし.jpg" alt="火種のわたし"><p>火種のわたし</p></div>
+        <div class="gallery-item"><img src="無い記憶上にて.jpg" alt="無い記憶上にて"><p>無い記憶上にて</p></div>
+        <div class="gallery-item"><img src="眼の奥に流す涙に心象に宿る光の色として、青.jpg" alt="眼の奥に流す涙に心象に宿る光の色として、青"><p>眼の奥に流す涙に心象に宿る光の色として、青</p></div>
+        <div class="gallery-item"><img src="経たふたり.jpg" alt="経たふたり"><p>経たふたり</p></div>
+        <div class="gallery-item"><img src="経たふたりだから抱きしめた.jpg" alt="経たふたりだから抱きしめた"><p>経たふたりだから抱きしめた</p></div>
+        <div class="gallery-item"><img src="花波1.png" alt="花波1"><p>花波1</p></div>
+        <div class="gallery-item"><img src="花波2.png" alt="花波2"><p>花波2</p></div>
+        <div class="gallery-item"><img src="花波3.png" alt="花波3"><p>花波3</p></div>
+        <div class="gallery-item"><img src="要るものだけが在ればいい1.jpg" alt="要るものだけが在ればいい1"><p>要るものだけが在ればいい1</p></div>
+        <div class="gallery-item"><img src="要るものだけが在ればいい2.jpg" alt="要るものだけが在ればいい2"><p>要るものだけが在ればいい2</p></div>
+        <div class="gallery-item"><img src="要るものだけが在ればいい3.jpg" alt="要るものだけが在ればいい3"><p>要るものだけが在ればいい3</p></div>
+        <div class="gallery-item"><img src="要るものだけが在ればいい4.jpg" alt="要るものだけが在ればいい4"><p>要るものだけが在ればいい4</p></div>
+        <div class="gallery-item"><img src="青にふればう.jpg" alt="青にふればう"><p>青にふればう</p></div>
+        <div class="gallery-item"><img src="願いのさなか.jpg" alt="願いのさなか"><p>願いのさなか</p></div>
       </div>
     </section>
     <section id="exhibitions">
@@ -468,6 +529,7 @@
   </div>
   <script>
     document.querySelector('.enter-button').addEventListener('click', function () {
+      document.body.classList.remove('view-gallery', 'view-exhibitions', 'view-about', 'view-contact');
       document.body.classList.add('intro-entered');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
