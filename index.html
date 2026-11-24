@@ -78,6 +78,11 @@
     }
     .gallery-item:nth-child(even) { margin-top: 0; }
     .gallery-item p { text-align: center; padding: 14px 0; font-family: 'Hiragino Sans W1', 'Hiragino Kaku Gothic ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif; font-weight: 200; }
+    .gallery-tabs { display: flex; justify-content: center; gap: 12px; margin: 0 auto 34px; }
+    .gallery-tab { border: 1px solid #c8bec2; border-radius: 999px; padding: 9px 24px 8px; background: transparent; color: var(--ink); cursor: pointer; font: inherit; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .gallery-tab span { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+    .gallery-tab[aria-selected="true"] { background: var(--ink); color: #fff7fa; }
+    .gallery-empty { padding: 80px 20px; border-top: 1px solid #c8bec2; text-align: center; color: #8d7b83; }
     .box { background: transparent; border-top: 1px solid #c8bec2; border-radius: 0; padding: 24px 0; box-shadow: none; }
     #about .box { max-width: 900px; border-top: 0; text-align: center; }
     #about p { font-size: clamp(22px, 3vw, 40px); line-height: 1.8; }
@@ -87,6 +92,23 @@
     .social-banner.x { background: #dc5a91; }
     .social-banner.tiktok { background: #dc5a91; }
     .contact-form { text-align: center; }
+    .exhibition-list { max-width: 900px; margin: 0 auto; }
+    .exhibition-category + .exhibition-category { margin-top: 48px; }
+    .exhibition-category h3 { margin: 0 0 18px; font-size: 20px; font-weight: 300; }
+    .exhibition-category h3 span { display: block; margin-top: 4px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+    .exhibition-subcategory + .exhibition-subcategory { margin-top: 48px; }
+    .exhibition-subcategory h4 { margin: 0 0 18px; font-size: 17px; font-weight: 300; }
+    .exhibition-subcategory h4 span { display: block; margin-top: 4px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+    .exhibition-items { margin: 0; padding: 0; list-style: none; }
+    .exhibition-item { padding: 18px 0; border-top: 1px solid #e1d8dc; }
+    .exhibition-item:first-child { border-top: 0; padding-top: 0; }
+    .exhibition-item strong,
+    .exhibition-item time,
+    .exhibition-item span { display: block; }
+    .exhibition-item strong { font-size: 17px; font-weight: 300; }
+    .exhibition-item time { margin-top: 6px; font-size: 13px; letter-spacing: .04em; }
+    .exhibition-item span { margin-top: 4px; color: #806d76; font-size: 13px; }
+    .exhibition-poster { display: block; width: min(100%, 520px); height: auto; margin: 0 auto 22px; }
     footer { background: transparent; color: var(--ink); text-align: center; padding: 20px 0; }
 
     .menu-button { position: absolute; top: 24px; right: 4vw; width: 38px; height: 38px; border: 0; background: transparent; color: var(--ink); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
@@ -232,10 +254,8 @@
     }
 
     body.view-gallery #about,
-    body.view-gallery #contact,
     body.view-gallery #exhibitions,
     body.view-exhibitions #about,
-    body.view-exhibitions #contact,
     body.view-exhibitions #gallery,
     body.view-about #gallery,
     body.view-about #exhibitions,
@@ -357,7 +377,7 @@
       font-size: 24px;
       line-height: 1;
     }
-    #gallery .gallery-item:first-child img { cursor: zoom-in; }
+    #gallery .gallery-item img { cursor: zoom-in; }
     @media (max-width: 650px) {
       .artwork-modal { padding: 12px; }
       .artwork-modal_dialog {
@@ -382,9 +402,7 @@
     }
 
     body.intro-entered.view-gallery #about,
-    body.intro-entered.view-gallery #contact,
     body.intro_entered.view-exhibitions #about,
-    body.intro-entered.view-exhibitions #contact,
     body.intro-entered.view-contact #about,
     body.intro-entered.view-contact #gallery,
     body.intro-entered.view-contact #exhibitions { display: none !important; }
@@ -392,6 +410,27 @@
     body.intro-entered.view-gallery #gallery,
     body.intro-entered.view-exhibitions #exhibitions,
     body.intro-entered.view-contact #contact { display: block !important; }
+
+    body.intro-entered.view-gallery #contact,
+    body.intro-entered.view-exhibitions #contact {
+      position: relative;
+      inset: auto;
+      display: block !important;
+      width: auto;
+      margin: 0 0 100px;
+      transform: none;
+      text-align: center;
+    }
+    body.intro-entered.view-gallery #contact h2,
+    body.intro-entered.view-exhibitions #contact h2 { display: block; }
+    body.intro-entered.view-gallery #contact .box,
+    body.intro-entered.view-exhibitions #contact .box {
+      width: min(760px, 92vw);
+      min-height: 112px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      box-sizing: border-box;
+    }
   </style>
 </head>
 <body>
@@ -431,66 +470,238 @@
     </section>
     <section id="gallery">
       <h2>ギャラリー / Gallery</h2>
+      <div class="gallery-tabs" role="tablist" aria-label="作品カテゴリ">
+        <button class="gallery-tab" type="button" role="tab" aria-selected="true" aria-controls="tableau-panel" data-gallery-tab="tableau">タブロー<span>Tableau</span></button>
+        <button class="gallery-tab" type="button" role="tab" aria-selected="false" aria-controls="drawing-panel" data-gallery-tab="drawing">ドローイング<span>Drawing</span></button>
+      </div>
+      <div id="tableau-panel" class="gallery-panel" data-gallery-panel="tableau" role="tabpanel">
       <div class="gallery">
         <div class="gallery-item">
-          <img src="作品1.jpg" alt="作品1" data-artwork="heart-shaped-hearts" role="button" tabindex="0" aria-label="作品「Heart shaped hearts」の詳細を開く">
+          <img src="作品1.jpg" alt="作品1" data-artwork="heart-shaped-hearts" data-year="2026" data-medium="油彩、キャンバス" data-size="縦 F20号（727 × 606 mm）" role="button" tabindex="0" aria-label="作品「Heart shaped hearts」の詳細を開く">
           <p>Heart shaped hearts</p>
         </div>
         <div class="gallery-item">
-          <img src="作品2.jpg" alt="作品2">
+          <img src="光源のあなた.jpg" alt="光源のあなた" data-artwork="光源のあなた" data-year="2026" data-medium="油彩、キャンバス" data-size="S30号" role="button" tabindex="0" aria-label="作品「光源のあなた」の詳細を開く">
           <p>光源のあなた</p>
         </div>
         <div class="gallery-item">
-          <img src="作品3.jpg" alt="作品3">
+          <img src="花殻を摘んで.jpg" alt="花殻を摘んで" data-artwork="花殻を摘んで" data-year="2023" data-medium="油彩、キャンバス" data-size="F12
+          号" role="button" tabindex="0" aria-label="作品「花殻を摘んで」の詳細を開く">
           <p>花殻を摘んで</p>
         </div>
         <div class="gallery-item">
-          <img src="作品4.jpg" alt="作品4">
+          <img src="上書き破損.jpg" alt="上書き破損" data-artwork="上書き破損" data-year="2025" data-medium="油彩、キャンバス" data-size="S6号" role="button" tabindex="0" aria-label="作品「上書き破損」の詳細を開く">
           <p>上書き破損</p>
         </div>
-        <div class="gallery-item"><img src="42g.jpg" alt="42g"><p>42g</p></div>
-        <div class="gallery-item"><img src="An eden of punishment.jpg" alt="An eden of punishment"><p>An eden of punishment</p></div>
-        <div class="gallery-item"><img src="FxxKING HAPPINESS.jpg" alt="FxxKING HAPPINESS"><p>FxxKING HAPPINESS</p></div>
-        <div class="gallery-item"><img src="HAPPINESS.jpg" alt="HAPPINESS"><p>HAPPINESS</p></div>
-        <div class="gallery-item"><img src="You know how to find me.jpg" alt="You know how to find me"><p>You know how to find me</p></div>
-        <div class="gallery-item"><img src="almost heaven.jpg" alt="almost heaven"><p>almost heaven</p></div>
-        <div class="gallery-item"><img src="meforus.jpg" alt="meforus"><p>meforus</p></div>
-        <div class="gallery-item"><img src="おのれ.jpg" alt="おのれ"><p>おのれ</p></div>
-        <div class="gallery-item"><img src="かわいい運命.jpg" alt="かわいい運命"><p>かわいい運命</p></div>
-        <div class="gallery-item"><img src="こころ.jpg" alt="こころ"><p>こころ</p></div>
-        <div class="gallery-item"><img src="こころぼしひとつ.jpg" alt="こころぼしひとつ"><p>こころぼしひとつ</p></div>
-        <div class="gallery-item"><img src="こゕめんね.jpg" alt="こゕめんね"><p>こゕめんね</p></div>
-        <div class="gallery-item"><img src="こゕめんね２.jpg" alt="こゕめんね２"><p>こゕめんね２</p></div>
-        <div class="gallery-item"><img src="たかく翔ぶ.jpg" alt="たかく翔ぶ"><p>たかく翔ぶ</p></div>
-        <div class="gallery-item"><img src="まなざし.jpg" alt="まなざし"><p>まなざし</p></div>
-        <div class="gallery-item"><img src="サナトリウムのゆめ（さざんか散る）.jpg" alt="サナトリウムのゆめ（さざんか散る）"><p>サナトリウムのゆめ（さざんか散る）</p></div>
-        <div class="gallery-item"><img src="サナトリウムのゆめ（コスモス畑）.jpg" alt="サナトリウムのゆめ（コスモス畑）"><p>サナトリウムのゆめ（コスモス畑）</p></div>
-        <div class="gallery-item"><img src="不可侵.jpg" alt="不可侵"><p>不可侵</p></div>
-        <div class="gallery-item"><img src="作品38.jpg" alt="作品38"><p>作品38</p></div>
-        <div class="gallery-item"><img src="同じ鋳型から産まれてよ.jpg" alt="同じ鋳型から産まれてよ"><p>同じ鋳型から産まれてよ</p></div>
-        <div class="gallery-item"><img src="大好きだから.jpg" alt="大好きだから"><p>大好きだから</p></div>
-        <div class="gallery-item"><img src="愛される覚悟.jpg" alt="愛される覚悟"><p>愛される覚悟</p></div>
-        <div class="gallery-item"><img src="救われきれない.jpg" alt="救われきれない"><p>救われきれない</p></div>
-        <div class="gallery-item"><img src="曖昧な明瞭.jpg" alt="曖昧な明瞭"><p>曖昧な明瞭</p></div>
-        <div class="gallery-item"><img src="火種のわたし.jpg" alt="火種のわたし"><p>火種のわたし</p></div>
-        <div class="gallery-item"><img src="無い記憶上にて.jpg" alt="無い記憶上にて"><p>無い記憶上にて</p></div>
-        <div class="gallery-item"><img src="眼の奥に流す涙に心象に宿る光の色として、青.jpg" alt="眼の奥に流す涙に心象に宿る光の色として、青"><p>眼の奥に流す涙に心象に宿る光の色として、青</p></div>
-        <div class="gallery-item"><img src="経たふたり.jpg" alt="経たふたり"><p>経たふたり</p></div>
-        <div class="gallery-item"><img src="経たふたりだから抱きしめた.jpg" alt="経たふたりだから抱きしめた"><p>経たふたりだから抱きしめた</p></div>
-        <div class="gallery-item"><img src="花波1.png" alt="花波1"><p>花波1</p></div>
-        <div class="gallery-item"><img src="花波2.png" alt="花波2"><p>花波2</p></div>
-        <div class="gallery-item"><img src="花波3.png" alt="花波3"><p>花波3</p></div>
-        <div class="gallery-item"><img src="要るものだけが在ればいい1.jpg" alt="要るものだけが在ればいい1"><p>要るものだけが在ればいい1</p></div>
-        <div class="gallery-item"><img src="要るものだけが在ればいい2.jpg" alt="要るものだけが在ればいい2"><p>要るものだけが在ればいい2</p></div>
-        <div class="gallery-item"><img src="要るものだけが在ればいい3.jpg" alt="要るものだけが在ればいい3"><p>要るものだけが在ればいい3</p></div>
-        <div class="gallery-item"><img src="要るものだけが在ればいい4.jpg" alt="要るものだけが在ればいい4"><p>要るものだけが在ればいい4</p></div>
-        <div class="gallery-item"><img src="青にふればう.jpg" alt="青にふればう"><p>青にふればう</p></div>
-        <div class="gallery-item"><img src="願いのさなか.jpg" alt="願いのさなか"><p>願いのさなか</p></div>
+        <div class="gallery-item"><img src="42g.jpg" alt="42g" data-artwork="42g" data-year="2026" data-medium="油彩、キャンバス" data-size="M30
+          " role="button" tabindex="0" aria-label="作品「42g」の詳細を開く"><p>42g</p></div>
+        <div class="gallery-item"><img src="An eden of punishment.jpg" alt="An eden of punishment" data-artwork="An eden of punishment" data-year="2026" data-medium="アクリル、キャンバス" data-size="F0号" role="button" tabindex="0" aria-label="作品「An eden of punishment」の詳細を開く"><p>An eden of punishment</p></div>
+        <div class="gallery-item"><img src="HAPPINESS.jpg" alt="HAPPINESS" data-artwork="HAPPINESS" data-year="2026" data-medium="油彩、キャンバス" data-size="F0号" role="button" tabindex="0" aria-label="作品「HAPPINESS」の詳細を開く"><p>HAPPINESS</p></div>
+        <div class="gallery-item"><img src="You know how to find me.jpg" alt="You know how to find me" data-artwork="You know how to find me" data-year="2026" data-medium="油彩、キャンバス" data-size="F30号" role="button" tabindex="0" aria-label="作品「You know how to find me」の詳細を開く"><p>You know how to find me</p></div>
+        <div class="gallery-item"><img src="almost heaven.jpg" alt="almost heaven" data-artwork="almost heaven" data-year="2026" data-medium="油彩、キャンバス" data-size="F20号" role="button" tabindex="0" aria-label="作品「almost heaven」の詳細を開く"><p>almost heaven</p></div>
+        <div class="gallery-item"><img src="meforus.jpg" alt="meforus" data-artwork="me for us" data-year="2025" data-medium="油彩、キャンバス" data-size="F30号" role="button" tabindex="0" aria-label="作品「me for us」の詳細を開く"><p>me for us</p></div>
+        <div class="gallery-item"><img src="おのれ.jpg" alt="おのれ" data-artwork="おのれ" data-year="2025" data-medium="油彩、キャンバス" data-size="F3号" role="button" tabindex="0" aria-label="作品「おのれ」の詳細を開く"><p>おのれ</p></div>
+        <div class="gallery-item"><img src="こころ.jpg" alt="こころ" data-artwork="こころ" data-year="2025" data-medium="油彩、キャンバス" data-size="F20号" role="button" tabindex="0" aria-label="作品「こころ」の詳細を開く"><p>こころ</p></div>
+        <div class="gallery-item"><img src="ごめんね.jpg" alt="ごめんね" data-artwork="ごめんね" data-year="2023"
+data-medium="油彩、キャンバス"
+data-size="F3号"><p>ごめんね</p></div>
+        <div class="gallery-item"><img src="ごめんね２.jpg" alt="ごめんね２" data-artwork="ごめんね２" data-year="2023" data-medium="油彩、キャンバス" data-size="F3号" role="button" tabindex="0" aria-label="作品「ごめんね２」の詳細を開く"><p>ごめんね</p></div>
+        <div class="gallery-item"><img src="たかく翔ぶ.jpg" alt="たかく翔ぶ" data-artwork="たかく翔ぶ" data-year="2025" data-medium="油彩、キャンバス" data-size="F3号" role="button" tabindex="0" aria-label="作品「たかく翔ぶ」の詳細を開く"><p>たかく翔ぶ</p></div>
+        <div class="gallery-item"><img src="サナトリウムのゆめ（さざんか散る）.jpg" alt="サナトリウムのゆめ（さざんか散る）" data-artwork="サナトリウムのゆめ（さざんか散る）" data-year="2024"
+data-medium="油彩、キャンバス"
+data-size="SM号"><p>サナトリウムのゆめ（さざんか散る）</p></div>
+        <div class="gallery-item"><img src="サナトリウムのゆめ（コスモス畑）.jpg" alt="サナトリウムのゆめ（コスモス畑）" data-artwork="サナトリウムのゆめ（コスモス畑）" data-year="2024"
+data-medium="油彩、キャンバス"
+data-size="SM号"><p>サナトリウムのゆめ（コスモス畑）</p></div>
+        <div class="gallery-item"><img src="不可侵.jpg" alt="不可侵" data-artwork="不可侵" data-year="2025"
+data-medium="油彩、キャンバス"
+data-size="F8号"><p>不可侵</p></div>
+        <div class="gallery-item"><img src="大好きだから.jpg" alt="大好きだから"data-year="2025"
+data-medium="油彩、キャンバス"
+data-size="F8号"><p>大好きだから</p></div>
+        <div class="gallery-item"><img src="愛される覚悟.jpg" alt="愛される覚悟" data-artwork="愛される覚悟" data-year="2025"
+data-medium="油彩、キャンバス"
+data-size="F8号"><p>愛される覚悟</p></div>
+        <div class="gallery-item"><img src="救われきれない.jpg" alt="救われきれない" data-artwork="救われきれない" data-year="2025"
+data-medium="油彩、キャンバス"
+data-size="F20号"><p>救われきれない</p></div>
+        <div class="gallery-item"><img src="曖昧な明瞭.jpg" alt="曖昧な明瞭" data-artwork="曖昧な明瞭" data-year="2023"
+data-medium="油彩、キャンバス"
+data-size="M30号"><p>曖昧な明瞭</p></div>
+        <div class="gallery-item"><img src="火種のわたし.jpg" alt="火種のわたし" data-artwork="火種のわたし" data-year="2023"
+data-medium="油彩、キャンバス"
+data-size="F6号"><p>火種のわたし</p></div>
+        <div class="gallery-item"><img src="無い記憶上にて.jpg" alt="無い記憶上にて" data-artwork="無い記憶上にて" data-year="2024"
+data-medium="油彩、キャンバス"
+data-size="F40号"><p>無い記憶上にて</p></div>
+        <div class="gallery-item"><img src="眼の奥に流す涙に心象に宿る光の色として、青.jpg" alt="眼の奥に流す涙に心象に宿る光の色として、青" data-artwork="眼の奥に流す涙に心象に宿る光の色として、青" data-year="2023"
+data-medium="油彩、キャンバス"
+data-size="F30号"><p>眼の奥に流す涙に心象に宿る光の色として、青</p></div>
+        <div class="gallery-item"><img src="経たふたり.jpg" alt="経たふたり"data-year="2025"
+data-medium="油彩、キャンバス"
+data-size="F8号"><p>経たふたり</p></div>
+        <div class="gallery-item"><img src="経たふたりだから抱きしめた.jpg" alt="経たふたりだから抱きしめた" data-artwork="経たふたりだから抱きしめた" data-year="2026"
+data-medium="油彩、キャンバス"
+data-size="F12号"><p>経たふたりだから抱きしめた</p></div>
+        <div class="gallery-item"><img src="花波１.png" alt="花波1"data-artwork="作品38" data-year="2025"
+data-medium="油彩、キャンバス、スタイロフォーム、蝋、ラメ"
+data-hide-size="true"><p>花波</p></div>
+        <div class="gallery-item"><img src="花波２.png" alt="花波2" data-artwork="作品39" data-year="2025"
+data-medium="油彩、キャンバス、スタイロフォーム、蝋、ラメ"
+data-hide-size="true"><p>花波</p></div>
+        <div class="gallery-item"><img src="花波3.png" alt="花波3" data-artwork="作品40" data-year="2025"
+data-medium="油彩、キャンバス、スタイロフォーム、蝋、ラメ"
+data-hide-size="true"><p>花波</p></div>
+        <div class="gallery-item"><img src="青にふればう.jpg" alt="青にふればう" data-artwork="青にふればう" data-year="2025"
+data-medium="油彩、キャンバス"
+data-size="F6号"><p>青にふればう</p></div>
+        <div class="gallery-item"><img src="願いのさなか.jpg" alt="願いのさなか" data-artwork="願いのさなか" data-year="2024"
+data-medium="油彩、キャンバス"
+data-size="F10号"><p>願いのさなか</p></div>
+        <div class="gallery-item">
+          <img src="相思の景.jpg" alt="相思の景" data-artwork="相思の景" data-year="2023"
+data-medium="油彩、キャンバス"
+data-size="F20号"><p>相思の景</p>
+        </div>
+        <div class="gallery-item">
+          <img src="在る1.jpg" alt="在る" data-artwork="在る1" data-year="2023"
+data-medium="油彩、クラッキングメディウム、ガラスビーズメディウム、デコパーツ、リボン、キャンバス"
+data-size="F10号">
+          <p>在る</p>
+        </div>
+        <div class="gallery-item"><img src="在る2.jpg" alt="在る" data-artwork="在る2" data-year="2023"
+data-medium="油彩、クラッキングメディウム、ガラスビーズメディウム、デコパーツ、リボン、キャンバス"
+data-size="F10号"><p>在る</p></div>
+        <div class="gallery-item"><img src="あかしたい.PNG" alt="あかしたい" data-artwork="あかしたい" data-year="2025"
+data-medium="油彩、キャンバス"
+data-size="F100号"><p>あかしたい</p></div>
+        <div class="gallery-item"><img src="あのとき1.PNG" alt="あのとき1" data-artwork="あのとき1" data-year="2025"
+data-medium="油彩、キャンバス"
+data-hide-size="true"><p>あのとき</p></div>
+        <div class="gallery-item"><img src="あのとき2.PNG" alt="あのとき2" data-artwork="あのとき2" data-year="2025"
+data-medium="油彩、キャンバス"
+data-hide-size="true"><p>あのとき</p></div>
+        <div class="gallery-item"><img src="あのとき3.PNG" alt="あのとき3" data-artwork="あのとき3" data-year="2025"
+data-medium="油彩、キャンバス"
+data-hide-size="true"><p>あのとき</p></div>
+        <div class="gallery-item"><img src="あのとき4.PNG" alt="あのとき4" data-artwork="あのとき4" data-year="2025"
+data-medium="油彩、キャンバス"
+data-hide-size="true"><p>あのとき</p></div>
+        <div class="gallery-item"><img src="あのとき5.PNG" alt="あのとき5" data-artwork="あのとき5" data-year="2025"
+data-medium="油彩、キャンバス"
+data-hide-size="true"><p>あのとき</p></div>
+        <div class="gallery-item"><img src="鱗粉をゆずるきもちで.jpg" alt="鱗粉をゆずるきもちで" data-artwork="鱗粉をゆずるきもちで" data-year="2023"
+data-medium="油彩、キャンバス"
+data-size="F100号"><p>鱗粉をゆずるきもちで</p></div>
+      </div>
+      </div>
+      <div id="drawing-panel" class="gallery-panel" data-gallery-panel="drawing" role="tabpanel" hidden>
+        <div class="gallery">
+          <div class="gallery-item"><img src="要るものだけが在ればいい1.jpg" alt="要るものだけが在ればいい1" data-artwork="要るものだけが在ればいい" data-year="2026"
+        data-medium="油彩、キャンバス、スタイロフォーム、蝋、ラメ"
+        data-size="B5"><p>要るものだけが在ればいい</p></div>
+          <div class="gallery-item"><img src="要るものだけが在ればいい2.jpg" alt="要るものだけが在ればいい2" data-artwork="要るものだけが在ればいい" data-year="2026"
+        data-medium="透明水彩、アクリルガッシュ、水彩紙"
+        data-size="B5"><p>要るものだけが在ればいい</p></div>
+          <div class="gallery-item"><img src="要るものだけが在ればいい3.jpg" alt="要るものだけが在ればいい3" data-artwork="要るものだけが在ればいい" data-year="2026"
+        data-medium="透明水彩、アクリルガッシュ、水彩紙"
+        data-size="B5"><p>要るものだけが在ればいい</p></div>
+          <div class="gallery-item"><img src="要るものだけが在ればいい4.jpg" alt="要るものだけが在ればいい4" data-artwork="要るものだけが在ればいい" data-year="2026"
+        data-medium="透明水彩、アクリルガッシュ、水彩紙"
+        data-size="B5"><p>要るものだけが在ればいい</p></div>
+          <div class="gallery-item"><img src="要るものだけが在ればいい5.PNG" alt="要るものだけが在ればいい5" data-artwork="要るものだけが在ればいい5" data-year="2025"
+      data-medium="油彩、キャンバス"
+      data-size="B5"><p>要るものだけが在ればいい</p></div>
+          <div class="gallery-item"><img src="かみさま.PNG" alt="かみさま" data-artwork="かみさま" data-year="2026" data-medium="アクリルガッシュ、キャンバス" data-hide-size="true"><p>かみさま</p></div>
+            <div class="gallery-item"><img src="さくらさくら.PNG" alt="さくらさくら" data-artwork="さくらさくら" data-year="2025"
+          data-medium="マルチライナー、透明水彩、原稿用紙"
+          data-size="B5"><p>さくらさくら</p></div>
+        </div>
       </div>
     </section>
     <section id="exhibitions">
       <h2>展示会 / Exhibitions</h2>
       <div class="box exhibition-list">
+        <section class="exhibition-category" aria-labelledby="upcoming-exhibitions-title">
+          <h3 id="upcoming-exhibitions-title">今後の展示予定<span>Upcoming Exhibitions</span></h3>
+          <ul class="exhibition-items">
+            <li class="exhibition-item">
+              <img class="exhibition-poster" src="DM2.png" alt="二人展『光をあなたと定義する』。デザインフェスタギャラリー原宿 WEST 1-B、2026年11月27日から29日まで開催。初日は12時開廊、最終日は17時閉廊。">
+              <strong>「光をあなたと定義する」</strong>
+              <time datetime="2026-11-27/2026-11-29">2026/11/27(金)〜11/29(日)</time>
+              <span>※初日12時開廊、最終日17時閉廊</span>
+              <span>デザインフェスタギャラリー、原宿 WEST 1-B</span>
+            </li>
+          </ul>
+        </section>
+        <section class="exhibition-category exhibition-history" aria-labelledby="past-exhibitions-title">
+          <h3 id="past-exhibitions-title">過去の展示歴<span>Past Exhibitions</span></h3>
+          <section class="exhibition-subcategory" aria-labelledby="solo-exhibitions-title">
+          <h4 id="solo-exhibitions-title">個展歴<span>Solo Exhibitions</span></h4>
+          <ul class="exhibition-items">
+            <li class="exhibition-item">
+              <strong>「経たふたりだから抱きしめた」</strong>
+              <time datetime="2026-01-23/2026-01-28">2026/01/23〜01/28</time>
+              <span>新宿眼科画廊、新宿</span>
+            </li>
+            <li class="exhibition-item">
+              <strong>「♡Heartgazing in our sanctum」</strong>
+              <time datetime="2025-11-07/2025-11-12">2025/11/07〜11/12</time>
+              <span>「meee」Gallery Tokyo、中野</span>
+            </li>
+            <li class="exhibition-item">
+              <strong>「罰に似た桃源郷のこと」</strong>
+              <time datetime="2025-05-24/2025-05-25">2025/05/24〜05/25</time>
+              <span>デザインフェスタギャラリー、原宿</span>
+            </li>
+          </ul>
+          </section>
+          <section class="exhibition-subcategory" aria-labelledby="group-exhibitions-title">
+          <h4 id="group-exhibitions-title">グループ展歴<span>Group Exhibitions</span></h4>
+          <ul class="exhibition-items">
+            <li class="exhibition-item">
+              <strong>「TOMONI HIKARU」</strong>
+              <time datetime="2026-09-29/2026-10-05">2026/09/29〜10/05</time>
+              <span>Gallery Rustico、高円寺</span>
+            </li>
+            <li class="exhibition-item">
+              <strong>「重傷戦闘生命論」</strong>
+              <time datetime="2026-09-25/2026-09-30">2026/09/25〜09/30</time>
+              <span>新宿眼科画廊、新宿</span>
+            </li>
+            <li class="exhibition-item">
+              <strong>「聖歌ちゃんと祈りくん」</strong>
+              <time datetime="2026-09-23">2026/09/23</time>
+              <span>水性、中野</span>
+            </li>
+            <li class="exhibition-item">
+              <strong>「恋の画塾プレゼンツ　LOVE SUMMIT 2026」</strong>
+              <time datetime="2026-09-19/2026-09-22">2026/09/19〜09/22</time>
+              <span>とりでアートギャラリー、取手</span>
+            </li>
+            <li class="exhibition-item">
+              <strong>「巡る熱は美証」</strong>
+              <time datetime="2026-06-11/2026-06-15">2026/06/11〜06/15</time>
+              <span>gallery SUMMER of LOVE、高円寺</span>
+            </li>
+            <li class="exhibition-item">
+              <strong>「少女、あやうき生瞬」</strong>
+              <time datetime="2026-05-16/2026-05-21">2026/05/16〜05/21</time>
+              <span>art space OURO、吉祥寺</span>
+            </li>
+            <li class="exhibition-item">
+              <strong>「うみШもも」</strong>
+              <time datetime="2024-10-26/2024-10-27">2024/10/26〜10/27</time>
+              <span>デザインフェスタギャラリー、原宿</span>
+            </li>
+            <li class="exhibition-item">
+              <strong>「青、光、ふれる」</strong>
+              <time datetime="2024-05-06/2024-05-11">2024/05/06〜05/11</time>
+              <span>デザインフェスタギャラリー、原宿</span>
+            </li>
+          </ul>
+          </section>
+        </section>
       </div>
     </section>
     <section id="contact">
@@ -558,6 +769,76 @@
       });
     });
 
+    const gallery = document.querySelector('.gallery');
+    const galleryItems = Array.from(gallery.querySelectorAll('.gallery-item'));
+    const lastOrder = {
+      '鱗粉をゆずるきもちで': 0,
+      '曖昧な明瞭': 1,
+      '相思の景': 2,
+      '火種のわたし': 3
+    };
+
+    galleryItems
+      .map(function (item, index) {
+        const image = item.querySelector('img');
+        const year = Number.parseInt(image.dataset.year, 10);
+        const title = image.nextElementSibling.textContent.trim();
+        const featuredOrder = {
+          '光源のあなた': 0,
+          'Heart shaped hearts': 1,
+          'An eden of punishment': 2,
+          HAPPINESS: 3,
+          'almost heaven': 4,
+          '42g': 5
+        };
+        const rank = year === 2026 && Object.prototype.hasOwnProperty.call(featuredOrder, title)
+          ? featuredOrder[title]
+          : year === 2025 && title === 'あかしたい'
+            ? 0
+            : index + 6;
+        const lastRank = Object.prototype.hasOwnProperty.call(lastOrder, title) ? lastOrder[title] : null;
+        return { item: item, year: Number.isNaN(year) ? null : year, index: index, rank: rank, lastRank: lastRank };
+      })
+      .sort(function (left, right) {
+        if (left.lastRank !== null || right.lastRank !== null) {
+          if (left.lastRank === null) return -1;
+          if (right.lastRank === null) return 1;
+          return left.lastRank - right.lastRank;
+        }
+        if (left.year === null && right.year === null) return left.index - right.index;
+        if (left.year === null) return 1;
+        if (right.year === null) return -1;
+        return right.year - left.year || left.rank - right.rank;
+      })
+      .forEach(function (entry) {
+        gallery.appendChild(entry.item);
+      });
+
+    const firstHananamiItem = gallery.querySelector('img[alt="花波1"]').closest('.gallery-item');
+    const anoTokiItems = gallery.querySelectorAll('img[alt^="あのとき"]');
+    anoTokiItems.forEach(function (image) {
+      gallery.insertBefore(image.closest('.gallery-item'), firstHananamiItem);
+    });
+    const anoTokiFirstItem = gallery.querySelector('img[alt="あのとき1"]').closest('.gallery-item');
+    const anoTokiFiveItem = gallery.querySelector('img[alt="あのとき5"]').closest('.gallery-item');
+    gallery.insertBefore(anoTokiFiveItem, anoTokiFirstItem);
+    const hetaFutariItem = gallery.querySelector('img[alt="経たふたり"]').closest('.gallery-item');
+    const overwriteItem = gallery.querySelector('img[alt="上書き破損"]').closest('.gallery-item');
+    gallery.insertBefore(overwriteItem, hetaFutariItem.nextElementSibling);
+
+    document.querySelectorAll('[data-gallery-tab]').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        const category = tab.dataset.galleryTab;
+
+        document.querySelectorAll('[data-gallery-tab]').forEach(function (otherTab) {
+          otherTab.setAttribute('aria-selected', String(otherTab === tab));
+        });
+        document.querySelectorAll('[data-gallery-panel]').forEach(function (panel) {
+          panel.hidden = panel.dataset.galleryPanel !== category;
+        });
+      });
+    });
+
     const artworkModal = document.querySelector('.artwork-modal');
 
     function closeArtworkModal() {
@@ -566,30 +847,39 @@
       document.body.classList.remove('modal-open');
     }
 
-    const heartArtwork = document.querySelector('[data-artwork="heart-shaped-hearts"]');
-
-    function openHeartArtwork() {
+    function openArtwork(image) {
       const modalImage = artworkModal.querySelector('.artwork-modal-image');
       const details = artworkModal.querySelectorAll('dd');
-      modalImage.src = heartArtwork.src;
-      modalImage.alt = heartArtwork.alt;
-      artworkModal.querySelector('h3').textContent = 'Heart shaped hearts';
-      details[0].textContent = 'Heart shaped hearts';
-      details[1].textContent = '2026';
-      details[2].textContent = '油彩、キャンバス';
-      details[3].textContent = '縦 F20号（727 × 606 mm）';
+      const sizeLabel = artworkModal.querySelectorAll('dt')[3];
+      const sizeValue = details[3];
+      const title = image.nextElementSibling.textContent.trim();
+      modalImage.src = image.src;
+      modalImage.alt = image.alt;
+      artworkModal.querySelector('h3').textContent = title;
+      details[0].textContent = title;
+      details[1].textContent = image.dataset.year || '未登録';
+      details[2].textContent = image.dataset.medium || '未登録';
+      sizeLabel.hidden = image.dataset.hideSize === 'true';
+      sizeValue.hidden = image.dataset.hideSize === 'true';
+      sizeValue.textContent = image.dataset.size || '未登録';
       artworkModal.classList.add('open');
       artworkModal.setAttribute('aria-hidden', 'false');
       document.body.classList.add('modal-open');
       artworkModal.querySelector('.artwork-modal-close').focus();
     }
 
-    heartArtwork.addEventListener('click', openHeartArtwork);
-    heartArtwork.addEventListener('keydown', function (event) {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        openHeartArtwork();
-      }
+    document.querySelectorAll('#gallery .gallery-item img').forEach(function (image) {
+      image.setAttribute('role', 'button');
+      image.setAttribute('tabindex', '0');
+      image.addEventListener('click', function () {
+        openArtwork(image);
+      });
+      image.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openArtwork(image);
+        }
+      });
     });
 
     document.querySelector('.artwork-modal-close').addEventListener('click', closeArtworkModal);
