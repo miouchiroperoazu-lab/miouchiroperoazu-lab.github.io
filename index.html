@@ -105,13 +105,12 @@
       section { margin-bottom: 64px; }
       body.intro-entered #about .box {
         top: 92px;
+        width: 84vw;
+        padding: 8px;
       }
       body.intro-entered #about p {
-        font-size: clamp(15px, 4.5vw, 20px);
-        line-height: 1.45;
-      }
-      body.intro-entered #about p + p {
-        margin-top: 8px;
+        font-size: clamp(13px, 3.8vw, 17px);
+        line-height: 1.38;
       }
       body.intro-entered #contact {
         bottom: 10px;
@@ -279,11 +278,19 @@
         top: 28px;
       }
       body.intro-entered #about .box {
-        top: 145px;
-        width: min(680px, 70vw);
+        top: 150px;
+        width: min(620px, 64vw);
+        padding: 12px;
       }
       body.intro-entered #about p {
+        font-size: clamp(15px, 1.35vw, 18px);
+        line-height: 1.42;
         margin: 0;
+      }
+      body.intro-entered #about p + p {
+        margin-top: 8px;
+        font-size: clamp(14px, 1.25vw, 16px);
+        line-height: 1.38;
       }
     }
     body.intro-entered .home-name {
