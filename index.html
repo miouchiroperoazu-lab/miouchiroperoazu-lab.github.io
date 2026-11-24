@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>桜扉まどか | 画家・作家</title>
+  <title>桜扉まどか Madoka Sakurado</title>
   <link rel="canonical" href="https://sakuradomadoka.com/">
   <meta name="description" content="桜扉まどかの公式ポートフォリオ。絵画作品、展示会情報、最新のお知らせ、お問い合わせをご案内します。">
   <meta name="author" content="桜扉まどか">
   <meta name="robots" content="index, follow">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ja_JP">
-  <meta property="og:title" content="桜扉まどか | 画家・作家">
+  <meta property="og:title" content="桜扉まどか Madoka Sakurado">
   <meta property="og:description" content="桜扉まどかの公式ポートフォリオ。絵画作品、展示会情報、最新のお知らせをご案内します。">
   <meta property="og:url" content="https://sakuradomadoka.com/">
   <meta property="og:site_name" content="桜扉まどか">
@@ -57,10 +57,26 @@
     .container { max-width: 1180px; margin: 0 auto; padding: 60px 4vw 20px; }
     section { margin-bottom: 100px; }
     section h2 { border: 0; font-family: 'Hiragino Sans W1', 'Hiragino Kaku Gothic ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif; font-weight: 200; text-align: center; }
-    .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 24px; }
-    .gallery-item { background: transparent; border-radius: 0; box-shadow: none; }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px 24px;
+      align-items: start;
+    }
+    .gallery-item {
+      min-width: 0;
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .gallery-item img {
+      display: block;
+      width: 100%;
+      height: clamp(280px, 32vw, 620px);
+      object-fit: cover;
+      background: #d9cbd1;
+    }
     .gallery-item:nth-child(even) { margin-top: 0; }
-    .gallery-item img { height: min(58vw, 620px); background: #d9cbd1; }
     .gallery-item p { text-align: center; padding: 14px 0; font-family: 'Hiragino Sans W1', 'Hiragino Kaku Gothic ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif; font-weight: 200; }
     .box { background: transparent; border-top: 1px solid #c8bec2; border-radius: 0; padding: 24px 0; box-shadow: none; }
     #about .box { max-width: 900px; border-top: 0; text-align: center; }
@@ -84,9 +100,8 @@
       .intro-inner { padding: 18px; }
       .enter-button { width: auto; height: auto; }
       nav a { margin: 0 8px; }
-      .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 10px; }
-      .gallery-item:nth-child(even) { margin-top: 0; }
-      .gallery-item img { height: 88vw; }
+      .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 8px; }
+      .gallery-item img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; }
       section { margin-bottom: 64px; }
       body.intro-entered #about .box {
         top: 7vh;
@@ -124,6 +139,12 @@
       body.intro-entered .menu-button {
         top: 14px;
         right: 14px;
+      }
+      body.intro-entered .home-name {
+        top: 18px;
+      }
+      body.intro-entered .home-name strong {
+        font-size: 22px;
       }
     }
 
@@ -272,6 +293,82 @@
         margin-top: 14px;
       }
     }
+    body.intro-entered .home-name {
+      position: absolute;
+      top: 24px;
+      left: 50%;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      transform: translateX(-50%);
+      color: #5e384a;
+      text-align: center;
+      white-space: nowrap;
+    }
+    body.intro-entered .home-name strong {
+      font-size: clamp(24px, 3vw, 42px);
+      font-weight: 200;
+      line-height: 1.1;
+    }
+    body.intro-entered .home-name span {
+      font-size: clamp(12px, 1.2vw, 16px);
+      letter-spacing: .08em;
+    }
+
+    .artwork-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      display: none;
+      place-items: center;
+      padding: 24px;
+      background: rgba(94,56,74,.72);
+      backdrop-filter: blur(10px);
+    }
+    .artwork-modal.open { display: grid; }
+    .artwork-modal-dialog {
+      width: min(920px, 92vw);
+      max-height: 88vh;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, .55fr);
+      overflow: auto;
+      background: #fff7fa;
+      box-shadow: 0 20px 60px rgba(94,56,74,.28);
+    }
+    .artwork-modal-image { width: 100%; height: 100%; min-height: 420px; object-fit: contain; background: #ecdce3; }
+    .artwork-modal-info { position: relative; padding: 52px 32px 32px; }
+    .artwork-modal-info h3 { margin: 0 0 22px; font-size: 28px; font-weight: 300; }
+    .artwork-modal-info dl { margin: 0; }
+    .artwork-modal-info dt { margin-top: 18px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+    .artwork-modal-info dd { margin: 4px 0 0; line-height: 1.7; }
+    .artwork-modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 36px;
+      height: 36px;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      color: #5e384a;
+      cursor: pointer;
+      font-size: 24px;
+      line-height: 1;
+    }
+    #gallery .gallery-item:first-child img { cursor: zoom-in; }
+    @media (max-width: 650px) {
+      .artwork-modal { padding: 12px; }
+      .artwork-modal_dialog {
+        grid-template-columns: 1fr;
+        width: 94vw;
+        max-height: 92vh;
+      }
+      .artwork-modal-image { height: min(58vh, 480px); min-height: 0; }
+      .artwork-modal-info { padding: 42px 20px 24px; }
+      .artwork-modal-info h3 { font-size: 22px; }
+    }
   </style>
 </head>
 <body>
@@ -300,6 +397,10 @@
   </nav>
   <div class="container">
     <section id="about">
+      <div class="home-name" aria-label="桜扉まどか / Madoka Sakurado">
+        <strong>桜扉まどか</strong>
+        <span lang="en">Madoka Sakurado</span>
+      </div>
       <div class="box">
         <p>優しさと暴力性を同時に表現できるピンクによって、あなたとわたしとの共鳴という、愛の萌芽を育みたい。</p>
         <p lang="en">Through pink, expressing both kindness and violence, I hope to nurture the seed of love born from resonance between you and me.</p>
@@ -309,7 +410,7 @@
       <h2>ギャラリー / Gallery</h2>
       <div class="gallery">
         <div class="gallery-item">
-          <img src="作品1.jpg" alt="作品1">
+          <img src="作品1.jpg" alt="作品1" data-artwork="heart-shaped-hearts" role="button" tabindex="0" aria-label="作品「Heart shaped hearts」の詳細を開く">
           <p>Heart shaped hearts</p>
         </div>
         <div class="gallery-item">
@@ -346,6 +447,25 @@
   <footer>
     <p>&copy; 2026 桜扉まどか</p>
   </footer>
+  <div class="artwork-modal" id="artwork-modal" role="dialog" aria-modal="true" aria-labelledby="artwork-modal-title" aria-hidden="true">
+    <div class="artwork-modal-dialog">
+      <img class="artwork-modal-image" src="作品1.jpg" alt="Heart shaped hearts">
+      <div class="artwork-modal-info">
+        <button class="artwork-modal-close" type="button" aria-label="作品情報を閉じる">×</button>
+        <h3 id="artwork-modal-title">Heart shaped hearts</h3>
+        <dl>
+          <dt>作品名 / Title</dt>
+          <dd>Heart shaped hearts</dd>
+          <dt>制作年 / Year</dt>
+          <dd>2026</dd>
+          <dt>素材 / Medium</dt>
+          <dd>油彩、キャンバス</dd>
+          <dt>サイズ / Size</dt>
+          <dd>縦 F20号（727 × 606 mm）</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
   <script>
     document.querySelector('.enter-button').addEventListener('click', function () {
       document.body.classList.add('intro-entered');
@@ -374,6 +494,48 @@
         menuButton.setAttribute('aria-expanded', 'false');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
+    });
+
+    const artworkModal = document.querySelector('.artwork-modal');
+
+    function closeArtworkModal() {
+      artworkModal.classList.remove('open');
+      artworkModal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+    }
+
+    const heartArtwork = document.querySelector('[data-artwork="heart-shaped-hearts"]');
+
+    function openHeartArtwork() {
+      const modalImage = artworkModal.querySelector('.artwork-modal-image');
+      const details = artworkModal.querySelectorAll('dd');
+      modalImage.src = heartArtwork.src;
+      modalImage.alt = heartArtwork.alt;
+      artworkModal.querySelector('h3').textContent = 'Heart shaped hearts';
+      details[0].textContent = 'Heart shaped hearts';
+      details[1].textContent = '2026';
+      details[2].textContent = '油彩、キャンバス';
+      details[3].textContent = '縦 F20号（727 × 606 mm）';
+      artworkModal.classList.add('open');
+      artworkModal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+      artworkModal.querySelector('.artwork-modal-close').focus();
+    }
+
+    heartArtwork.addEventListener('click', openHeartArtwork);
+    heartArtwork.addEventListener('keydown', function (event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openHeartArtwork();
+      }
+    });
+
+    document.querySelector('.artwork-modal-close').addEventListener('click', closeArtworkModal);
+    artworkModal.addEventListener('click', function (event) {
+      if (event.target === artworkModal) closeArtworkModal();
+    });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && artworkModal.classList.contains('open')) closeArtworkModal();
     });
   </script>
 </body>
