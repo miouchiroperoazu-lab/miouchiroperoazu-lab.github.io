@@ -68,7 +68,7 @@
     }
     .gallery-item {
       min-width: 0;
-      background: #d9cbd1;
+      background: transparent;
       border-radius: 0;
       box-shadow: none;
     }
@@ -77,6 +77,7 @@
       width: 100%;
       height: clamp(280px, 32vw, 620px);
       object-fit: cover;
+      background: #d9cbd1;
       visibility: hidden;
     }
     .gallery-item img.is-loaded,
@@ -392,10 +393,11 @@
     #gallery .gallery-item img { cursor: zoom-in; }
     @media (max-width: 650px) {
       .artwork-modal { padding: 12px; }
-      .artwork-modal_dialog {
-        grid-template-columns: 1fr;
+      .artwork-modal-dialog {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto auto;
         width: 94vw;
-        max-height: 92vh;
+        max-height: 92dvh;
       }
       .artwork-modal-image { height: min(58vh, 480px); min-height: 0; }
       .artwork-modal-info { padding: 42px 20px 24px; }
@@ -508,7 +510,7 @@
         </div>
         <div class="gallery-item"><img loading="lazy" decoding="async" data-src="42g.jpg" alt="42g" data-artwork="42g" data-year="2026" data-medium="油彩、キャンバス" data-size="M30
           " role="button" tabindex="0" aria-label="作品「42g」の詳細を開く"><p>42g</p></div>
-        <div class="gallery-item"><img loading="lazy" decoding="async" data-src="An eden of punishment.jpg" alt="An eden of punishment" data-artwork="An eden of punishment" data-year="2026" data-medium="アクリル、キャンバス" data-size="F0号" role="button" tabindex="0" aria-label="作品「An eden of punishment」の詳細を開く"><p>An eden of punishment</p></div>
+        <div class="gallery-item"><img loading="lazy" decoding="async" data-src="An eden of punishment.jpg" alt="An eden of punishment" data-artwork="An eden of punishment" data-year="2026" data-medium="アクリル、シェルフレーク、キャンバス" data-size="F0号" role="button" tabindex="0" aria-label="作品「An eden of punishment」の詳細を開く"><p>An eden of punishment</p></div>
         <div class="gallery-item"><img loading="lazy" decoding="async" data-src="HAPPINESS.jpg" alt="HAPPINESS" data-artwork="HAPPINESS" data-year="2026" data-medium="透明水彩、アクリルガッシュ、キャンバス" data-size="F0号" role="button" tabindex="0" aria-label="作品「HAPPINESS」の詳細を開く"><p>HAPPINESS</p></div>
         <div class="gallery-item"><img loading="lazy" decoding="async" data-src="You know how to find me.jpg" alt="You know how to find me" data-artwork="You know how to find me" data-year="2026" data-medium="油彩、キャンバス" data-size="F30号" role="button" tabindex="0" aria-label="作品「You know how to find me」の詳細を開く"><p>You know how to find me</p></div>
         <div class="gallery-item"><img loading="lazy" decoding="async" data-src="almost heaven.jpg" alt="almost heaven" data-artwork="almost heaven" data-year="2026" data-medium="油彩、キャンバス" data-size="F20号" role="button" tabindex="0" aria-label="作品「almost heaven」の詳細を開く"><p>almost heaven</p></div>
