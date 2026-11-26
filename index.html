@@ -749,6 +749,17 @@ data-size="F100号"><p>鱗粉をゆずるきもちで</p></div>
     </div>
   </div>
   <script>
+    const optimizedBackground = new Image();
+    optimizedBackground.addEventListener('error', function () {
+      document.querySelector('.intro').style.backgroundImage = "url('作品1.jpg')";
+      document.querySelector('#about').style.setProperty(
+        'background-image',
+        "linear-gradient(rgba(255,247,250,.52), rgba(255,247,250,.52)), url('作品1.jpg')",
+        'important'
+      );
+    }, { once: true });
+    optimizedBackground.src = 'optimized/作品1-background.jpg';
+
     document.querySelector('.enter-button').addEventListener('click', function () {
       document.body.classList.remove('view-gallery', 'view-exhibitions', 'view-about', 'view-contact');
       document.body.classList.add('intro-entered');
@@ -798,8 +809,12 @@ data-size="F100号"><p>鱗粉をゆずるきもちで</p></div>
 
     function loadImages(container) {
       container.querySelectorAll('img[data-src]').forEach(function (image, index) {
+        const originalSource = image.dataset.src;
         image.loading = index < 6 ? 'eager' : 'lazy';
-        image.src = 'optimized/' + image.dataset.src.replace(/\.(?:png|jpe?g)$/i, '.jpg');
+        image.addEventListener('error', function () {
+          image.src = originalSource;
+        }, { once: true });
+        image.src = 'optimized/' + originalSource.replace(/\.(?:png|jpe?g)$/i, '.jpg');
         delete image.dataset.src;
       });
     }
