@@ -471,6 +471,7 @@
     <a href="#home" data-view="home">ホーム / HOME</a>
     <a href="#gallery" data-view="gallery">ギャラリー / Gallery</a>
     <a href="#exhibitions" data-view="exhibitions">展示会 / Exhibitions</a>
+    <a href="https://sakuradoor.base.shop/" target="_blank" rel="noopener noreferrer">ネットショップ / Shop</a>
     <a href="#contact" data-view="contact">お問い合わせ / Contact</a>
   </nav>
   <div class="container">
@@ -794,8 +795,13 @@ data-size="F100号"><p>鱗粉をゆずるきもちで</p></div>
 
     menuPanel.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function (event) {
-        event.preventDefault();
         const view = link.dataset.view;
+        if (!view) {
+          setMenuOpen(false);
+          return;
+        }
+
+        event.preventDefault();
 
         document.body.classList.remove('view-gallery', 'view-exhibitions', 'view-about', 'view-contact');
         if (view === 'home') {
