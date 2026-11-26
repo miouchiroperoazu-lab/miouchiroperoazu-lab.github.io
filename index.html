@@ -362,15 +362,16 @@
     }
     .artwork-modal.open { display: grid; }
     .artwork-modal-dialog {
-      width: min(920px, 92vw);
+      width: fit-content;
+      max-width: 92vw;
       max-height: 88vh;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(240px, .55fr);
+      grid-template-columns: max-content minmax(240px, 32vw);
       overflow: auto;
       background: #fff7fa;
       box-shadow: 0 20px 60px rgba(94,56,74,.28);
     }
-    .artwork-modal-image { width: 100%; height: 100%; min-height: 420px; object-fit: contain; background: #ecdce3; visibility: hidden; }
+    .artwork-modal-image { display: block; width: auto; height: auto; max-width: min(52vw, 620px, calc(92vw - 280px)); max-height: 88vh; min-height: 0; justify-self: center; object-fit: contain; background: transparent; visibility: hidden; }
     .artwork-modal-info { position: relative; padding: 52px 32px 32px; }
     .artwork-modal-info h3 { margin: 0 0 22px; font-size: 28px; font-weight: 300; }
     .artwork-modal-info dl { margin: 0; }
@@ -399,7 +400,7 @@
         width: 94vw;
         max-height: 92dvh;
       }
-      .artwork-modal-image { height: min(58vh, 480px); min-height: 0; }
+      .artwork-modal-image { width: 100%; height: auto; max-width: 100%; max-height: none; justify-self: stretch; }
       .artwork-modal-info { padding: 42px 20px 24px; }
       .artwork-modal-info h3 { font-size: 22px; }
     }
@@ -540,7 +541,7 @@ data-size="F8号"><p>愛される覚悟</p></div>
         <div class="gallery-item"><img loading="lazy" decoding="async" data-src="救われきれない.jpg" alt="救われきれない" data-artwork="救われきれない" data-year="2025"
 data-medium="油彩、キャンバス"
 data-size="F20号"><p>救われきれない</p></div>
-        <div class="gallery-item"><img loading="lazy" decoding="async" data-src="曖昧な明瞭.jpg" alt="曖昧な明瞭" data-artwork="曖昧な明瞭" data-year="2023"
+        <div class="gallery-item"><img loading="lazy" decoding="async" data-src="明瞭な曖昧.jpg" alt="明瞭な曖昧" data-artwork="明瞭な曖昧" data-year="2023"
 data-medium="油彩、キャンバス"
 data-size="M30号"><p>曖昧な明瞭</p></div>
         <div class="gallery-item"><img loading="lazy" decoding="async" data-src="火種のわたし.jpg" alt="火種のわたし" data-artwork="火種のわたし" data-year="2023"
