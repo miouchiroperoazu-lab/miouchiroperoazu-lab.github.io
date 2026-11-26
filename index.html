@@ -6,7 +6,7 @@
   <title>桜扉まどか Madoka Sakurado</title>
   <link rel="canonical" href="https://sakuradomadoka.com/">
   <meta name="description" content="桜扉まどかの公式ポートフォリオ。絵画作品、展示会情報、最新のお知らせ、お問い合わせをご案内します。">
-  <link rel="preload" as="image" href="作品1-background.jpg">
+  <link rel="preload" as="image" href="optimized/作品1-background.jpg">
   <meta name="author" content="桜扉まどか">
   <meta name="robots" content="index, follow">
   <meta property="og:type" content="website">
@@ -34,7 +34,7 @@
 
     .intro {
       position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center;
-      background: #f5b5ca url('作品1-background.jpg') center / cover no-repeat;
+      background: #f5b5ca url('optimized/作品1-background.jpg') center / cover no-repeat;
       transition: opacity 1s cubic-bezier(.7,0,.2,1), visibility 1s;
     }
     .intro::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(20,10,16,.50), rgba(20,10,16,.05) 55%, rgba(20,10,16,.35)); }
@@ -173,7 +173,7 @@
       }
     }
 
-    #about { position: relative; min-height: calc(100vh - 160px); display: grid; place-items: center; margin: 0 -4vw 100px; padding: 60px 4vw; background: linear-gradient(rgba(255,247,250,.60), rgba(255,247,250,.60)), url('作品1-background.jpg') center center / cover no-repeat; }
+    #about { position: relative; min-height: calc(100vh - 160px); display: grid; place-items: center; margin: 0 -4vw 100px; padding: 60px 4vw; background: linear-gradient(rgba(255,247,250,.60), rgba(255,247,250,.60)), url('optimized/作品1-background.jpg') center center / cover no-repeat; }
     #about { background-position: center center; background-size: cover; background-repeat: no-repeat; }
     body.intro-entered #about {
       position: fixed;
@@ -190,7 +190,7 @@
       padding: 0;
       overflow: hidden;
       transform: translateX(-50%);
-      background-image: linear-gradient(rgba(255,247,250,.52), rgba(255,247,250,.52)), url('作品1-background.jpg') !important;
+      background-image: linear-gradient(rgba(255,247,250,.52), rgba(255,247,250,.52)), url('optimized/作品1-background.jpg') !important;
       background-position: center center !important;
       background-repeat: no-repeat !important;
       background-size: cover !important;
@@ -797,8 +797,9 @@ data-size="F100号"><p>鱗粉をゆずるきもちで</p></div>
     const galleryItems = Array.from(gallery.querySelectorAll('.gallery-item'));
 
     function loadImages(container) {
-      container.querySelectorAll('img[data-src]').forEach(function (image) {
-        image.src = image.dataset.src;
+      container.querySelectorAll('img[data-src]').forEach(function (image, index) {
+        image.loading = index < 6 ? 'eager' : 'lazy';
+        image.src = 'optimized/' + image.dataset.src.replace(/\.(?:png|jpe?g)$/i, '.jpg');
         delete image.dataset.src;
       });
     }
